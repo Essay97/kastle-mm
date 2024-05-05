@@ -4,13 +4,13 @@ import arrow.core.getOrElse
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.ProgramResult
 import com.github.ajalt.clikt.parameters.arguments.argument
-import service.ConfigManager
+import service.InstallationManager
 
 class Uninstall : CliktCommand(help = "Uninstall an installed game") {
 
     private val gameName by argument()
 
-    private val configManager = ConfigManager().getOrElse { throw ProgramResult(4) }
+    private val configManager = InstallationManager().getOrElse { throw ProgramResult(4) }
 
     override fun run() {
         if (!configManager.allGames.containsKey(gameName)) {

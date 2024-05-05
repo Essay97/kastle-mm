@@ -11,14 +11,14 @@ import com.varabyte.kotter.foundation.text.text
 import com.varabyte.kotter.foundation.text.textLine
 import presentation.components.*
 import presentation.gamecommands.getCommand
-import service.ConfigManager
-import service.SerializationManager
-import service.model.commands.CommandFactory
+import service.InstallationManager
+import service.ConfigurationManager
+import model.commands.CommandFactory
 
 class Play : CliktCommand(help = "Start playing with the specified game") {
 
-    private val configManager = ConfigManager().getOrElse { throw ProgramResult(4) }
-    private val serializationManager = SerializationManager()
+    private val configManager = InstallationManager().getOrElse { throw ProgramResult(4) }
+    private val serializationManager = ConfigurationManager()
 
     private val gameName by argument()
 

@@ -1,8 +1,8 @@
 package service
 
-import service.model.commands.GameCommand
-import service.model.nextaction.DescribeCurrentRoom
-import service.model.nextaction.NextAction
+import model.commands.GameCommand
+import model.nextaction.DescribeCurrentRoom
+import model.nextaction.NextAction
 import error.KastleError
 
 class CommandManager {

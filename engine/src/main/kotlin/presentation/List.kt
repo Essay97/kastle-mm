@@ -6,12 +6,12 @@ import arrow.core.raise.either
 import arrow.core.raise.ensure
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.ProgramResult
-import service.ConfigManager
+import service.InstallationManager
 import error.NegativePaddingError
 
 class List : CliktCommand(help = "List all installed games with their file definition location") {
 
-    private val configManager = ConfigManager().getOrElse { throw ProgramResult(4) }
+    private val configManager = InstallationManager().getOrElse { throw ProgramResult(4) }
 
     private val gameNameHeaderPadding = 12
     private val gameNameHeaderString =

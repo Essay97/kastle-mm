@@ -15,6 +15,7 @@ dependencies {
     implementation(libs.clikt)
     implementation(libs.kotter)
     implementation(libs.arrow)
+    implementation(libs.kotlinx.datetime)
 }
 
 tasks.test {

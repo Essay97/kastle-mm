@@ -11,6 +11,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation(libs.kotlinx.datetime)
+    implementation(project(":core"))
 }
 
 tasks.test {

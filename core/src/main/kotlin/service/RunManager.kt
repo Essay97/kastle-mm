@@ -1,6 +1,6 @@
 package service
 
-import service.model.WinningConditions
+import model.WinningConditions
 
 class RunManager(
     private val winningConditions: WinningConditions?,

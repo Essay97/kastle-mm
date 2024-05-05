@@ -6,10 +6,10 @@ import arrow.core.raise.either
 import arrow.core.raise.ensure
 import arrow.core.raise.ensureNotNull
 import arrow.core.right
-import service.model.Direction
-import service.model.commands.CommandFactory
-import service.model.commands.GameCommand
-import util.error.PlayerError
+import model.Direction
+import model.commands.CommandFactory
+import model.commands.GameCommand
+import error.PlayerError
 
 fun getCommand(command: String, argument: String?, factory: CommandFactory):
         Either<PlayerError, GameCommand> =

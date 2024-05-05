@@ -5,12 +5,12 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.ProgramResult
 import com.github.ajalt.clikt.parameters.arguments.argument
 import com.github.ajalt.clikt.parameters.types.path
-import service.ConfigManager
+import service.InstallationManager
 import java.nio.file.Path
 
 class Install : CliktCommand(help = "Install a new game") {
 
-    private val configManager = ConfigManager().getOrElse { throw ProgramResult(4) }
+    private val configManager = InstallationManager().getOrElse { throw ProgramResult(4) }
 
     private val gameName by argument()
     private val gamePath by argument().path(

@@ -9,7 +9,7 @@ import com.varabyte.kotterx.decorations.BorderCharacters
 import com.varabyte.kotterx.decorations.bordered
 import com.varabyte.kotterx.text.Justification
 import com.varabyte.kotterx.text.justified
-import service.model.GameMetadata
+import model.GameMetadata
 
 fun Session.header(metadata: GameMetadata?, gameName: String) = section {
     bordered(
@@ -21,18 +21,18 @@ fun Session.header(metadata: GameMetadata?, gameName: String) = section {
             if (metadata != null) {
                 if (metadata.author != null) {
                     text("Author: ")
-                    bold { textLine(metadata.author) }
+                    bold { textLine(metadata.author!!) }
                 }
                 if (metadata.version != null) {
                     text("Version: ")
-                    bold { textLine(metadata.version) }
+                    bold { textLine(metadata.version!!) }
                 }
                 if (metadata.published != null) {
                     text("Published: ")
                     bold {
                         textLine(
                             with(metadata.published) {
-                                "${dayOfMonth}/${
+                                "${this!!.dayOfMonth}/${
                                     monthNumber.toString().padStart(2, '0')
                                 }/${year}"
                             }
@@ -41,7 +41,7 @@ fun Session.header(metadata: GameMetadata?, gameName: String) = section {
                 }
                 if (metadata.kastleVersions != null) {
                     text("Compatible with: Kastle ")
-                    bold { metadata.kastleVersions.joinToString(", ").let { textLine(it) } }
+                    bold { textLine(metadata.kastleVersions!!.joinToString(", ")) }
                 }
             }
         }

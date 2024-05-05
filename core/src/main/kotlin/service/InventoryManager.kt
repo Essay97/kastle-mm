@@ -4,9 +4,9 @@ import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensure
 import arrow.core.raise.ensureNotNull
-import service.model.ItemId
-import service.model.Items
-import service.model.Rooms
+import model.ItemId
+import model.Items
+import model.Rooms
 import error.GameRuntimeError
 import error.KastleError
 

@@ -10,7 +10,7 @@ import com.varabyte.kotter.foundation.input.runUntilInputEntered
 import com.varabyte.kotter.runtime.Session
 import presentation.gamecommands.gameCommandCompletions
 import presentation.gamecommands.gameCommands
-import util.error.PlayerError
+import error.PlayerError
 
 fun Session.nextTurn(): Either<PlayerError, Pair<String, String?>> {
     var parsedCommand: Either<PlayerError, Pair<String, String?>> = PlayerError("Generic player error").left()

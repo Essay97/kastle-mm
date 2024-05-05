@@ -1,7 +1,7 @@
 package error
 
-import service.model.CharacterId
-import service.model.ItemId
+import model.CharacterId
+import model.ItemId
 
 sealed class KastleError(open val description: String) {
     abstract fun join(second: KastleError): KastleError

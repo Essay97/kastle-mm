@@ -7,10 +7,10 @@ import com.varabyte.kotter.runtime.Session
 import service.CommandManager
 import service.GameState
 import service.InformationManager
-import service.model.Characters
-import service.model.Items
-import service.model.Rooms
-import service.model.nextaction.*
+import model.Characters
+import model.Items
+import model.Rooms
+import model.nextaction.*
 
 fun Session.handleNextAction(
     commandManager: CommandManager,
@@ -72,7 +72,7 @@ fun Session.handleNextAction(
         is ExecuteDialogue -> {
             val action = commandManager.nextAction as ExecuteDialogue
             val dialogue = action.dialogue
-            val talkerName = Characters.getById(dialogue.talker)!!.name
+            val talkerName = model.Characters.getById(dialogue.talker)!!.name
             section { bold { textLine("${talkerName.uppercase()}:") } }.run()
             var choice = dialogue.first().fold(
                 ifLeft = {
@@ -88,7 +88,7 @@ fun Session.handleNextAction(
                 ifRight = {
                     section { textLine(it.text); textLine() }.run()
                     if (it.reward != null) {
-                        Rooms.getById(state.currentRoom)!!.addItem(it.reward)
+                        Rooms.getById(state.currentRoom)!!.addItem(it.reward!!)
                     }
                     -100 // Dummy value that should never be used
                 }
@@ -106,7 +106,7 @@ fun Session.handleNextAction(
                     ifRight = {
                         section { textLine(it.text); textLine() }.run()
                         if (it.reward != null) {
-                            Rooms.getById(state.currentRoom)!!.addItem(it.reward)
+                            Rooms.getById(state.currentRoom)!!.addItem(it.reward!!)
                         }
                         -100 // Dummy value that should never be used
                     }
