@@ -1,5 +1,6 @@
 import dto.*
 import kotlinx.datetime.LocalDate
+import model.LinkBehavior
 
 @DslMarker
 annotation class KastleDsl
@@ -55,6 +56,12 @@ class GameScope(private val initialRoomId: String) {
         rooms += result.room
     }
 
+    fun winIf(init: WinningConditionsScope.() -> Unit) {
+        val scope = WinningConditionsScope()
+        scope.init()
+        winningConditions = scope.build()
+    }
+
     fun build(): GameConfiguration = GameConfiguration(
         initialRoomId = initialRoomId,
         metadata = metadata,
@@ -65,6 +72,8 @@ class GameScope(private val initialRoomId: String) {
         preface = preface,
         winningConditions = winningConditions
     )
+
+
 }
 
 @KastleDsl
@@ -145,7 +154,9 @@ class RoomScope(private val roomId: String) {
     fun character(characterId: String, init: CharacterScope.() -> Unit) {
         val scope = CharacterScope(characterId)
         scope.init()
-        characters += scope.build()
+        val result = scope.build()
+        characters += result.character
+        items += result.items
     }
 
     fun item(itemId: String, init: ItemScope.() -> Unit) {
@@ -180,6 +191,8 @@ class CharacterScope(private val characterId: String) {
     var description: String? = null
     private var matchers: List<String> = listOf()
     private var dialogue: DialogueDto? = null
+    // This is needed to store the items that are created as dialogue rewards
+    private var items: List<ItemDto> = mutableListOf()
 
     fun matchers(vararg words: String) {
         matchers = words.asList()
@@ -188,16 +201,23 @@ class CharacterScope(private val characterId: String) {
     fun dialogue(init: DialogueScope.() -> Unit) {
         val scope = DialogueScope()
         scope.init()
-        dialogue = scope.build()
+        val result = scope.build()
+        dialogue = result.dialogue
+        items = result.items
     }
 
-    fun build(): CharacterDto = CharacterDto(
-        id = characterId,
-        name = name,
-        description = description,
-        matchers = matchers,
-        dialogue = dialogue
+    fun build(): BuildResult = BuildResult(
+        character = CharacterDto(
+            id = characterId,
+            name = name,
+            description = description,
+            matchers = matchers,
+            dialogue = dialogue
+        ),
+        items = items
     )
+
+    class BuildResult(val character: CharacterDto, val items: List<ItemDto>)
 }
 
 @KastleDsl
@@ -222,30 +242,46 @@ class ItemScope(private val itemId: String) {
 class DialogueScope {
     private var questions: MutableList<QuestionDto> = mutableListOf()
     private var firstQuestionId = "d-question"
+    // This is needed to store the items that are created as dialogue rewards
+    private var items: MutableList<ItemDto> = mutableListOf()
 
     fun firstQuestion(questionId: String, init: QuestionScope.() -> Unit) {
         val scope =  QuestionScope(questionId)
         scope.init()
         firstQuestionId = questionId
-        questions += scope.build()
+        val result = scope.build()
+        questions += result.question
+        if (result.item != null) {
+            items += result.item
+        }
     }
 
     fun question(questionId: String, init: QuestionScope.() -> Unit) {
         val scope =  QuestionScope(questionId)
         scope.init()
-        questions += scope.build()
+        val result = scope.build()
+        questions += result.question
+        if (result.item != null) {
+            items += result.item
+        }
+
     }
 
-    fun build(): DialogueDto = DialogueDto(
-        firstQuestion = firstQuestionId,
-        questions = questions
+    fun build(): BuildResult = BuildResult(
+        dialogue = DialogueDto(
+            firstQuestion = firstQuestionId,
+            questions = questions
+        ),
+        items = items
     )
+
+    class BuildResult(val dialogue: DialogueDto, val items: List<ItemDto>)
 }
 
 @KastleDsl
 class QuestionScope(private val questionId: String) {
     var text = "Default question"
-    var reward: String? = null //Item id of the object that will be dropped
+    private var reward: ItemDto? = null //Item id of the object that will be dropped
 
     private var answers: MutableList<AnswerDto> = mutableListOf()
 
@@ -255,12 +291,23 @@ class QuestionScope(private val questionId: String) {
         answers += scope.build()
     }
 
-    fun build(): QuestionDto = QuestionDto(
-        id = questionId,
-        question = text,
-        answers = answers,
-        reward = reward
+    fun reward(itemId: String, init: ItemScope.() -> Unit) {
+        val scope = ItemScope(itemId)
+        scope.init()
+        reward = scope.build()
+    }
+
+    fun build(): BuildResult = BuildResult(
+        question = QuestionDto(
+            id = questionId,
+            question = text,
+            answers = answers,
+            reward = reward?.id
+        ),
+        item = reward
     )
+
+    class BuildResult(val question: QuestionDto, val item: ItemDto?)
 }
 
 @KastleDsl
@@ -274,6 +321,17 @@ class AnswerScope {
     )
 }
 
+@KastleDsl
+class WinningConditionsScope {
+    var playerOwns: String? = null
+    var playerEnters: String? = null
+
+    fun build(): WinningConditionsDto = WinningConditionsDto(
+        playerOwns = playerOwns,
+        playerEnters = playerEnters
+    )
+}
+
 fun test() {
     game("my-room") {
         preface = "Once upon a time, not so long ago..."
@@ -283,6 +341,10 @@ fun test() {
             version = "1.0.0"
             published = LocalDate(2024, 5, 4)
             kastleVersions = listOf("1.0")
+        }
+
+        winIf {
+            playerOwns = "i-sword"
         }
 
         player {
@@ -303,6 +365,31 @@ fun test() {
                 name = "Sword"
                 description = "It's a sword"
                 matchers("sword", "blade")
+            }
+
+            character("c-wizard") {
+                name = "Gandalf"
+                description = "One of the great Istari wizards"
+                dialogue {
+                    firstQuestion("q-hello") {
+                        text = "Hello voyager. Do you need me to enchant you?"
+                        answer {
+                            text = "Yes"
+                            nextQuestion = "q-enchant"
+                        }
+                        answer {
+                            text = "No"
+                            nextQuestion = "q-not-enchant"
+                        }
+                    }
+                    question("q-enchant") {
+                        text = "Hocus Pocus!"
+                        reward("i-enchantment") {
+                            name = "Luck enchantment"
+                            description = "Until this is active you are super lucky"
+                        }
+                    }
+                }
             }
         }
     }
