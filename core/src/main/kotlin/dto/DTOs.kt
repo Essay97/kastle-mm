@@ -1,6 +1,7 @@
 package dto
 
 import kotlinx.datetime.LocalDate
+import model.LinkBehavior
 
 
 data class MetadataDto(
@@ -44,28 +45,6 @@ data class DirectionStateDto(
     val value: LinkState, val behavior: LinkBehavior, val triggers: List<String>? = null
 )
 
-enum class LinkBehavior {
-    OPENABLE {
-        override val canOpen: Boolean = true
-        override val canClose: Boolean = false
-    },
-    LOCKABLE {
-        override val canOpen: Boolean = false
-        override val canClose: Boolean = true
-    },
-    COMPLETE {
-        override val canOpen: Boolean = true
-        override val canClose: Boolean = true
-    },
-    CONSTANT {
-        override val canOpen: Boolean = false
-        override val canClose: Boolean = false
-    };
-
-    abstract val canOpen: Boolean
-    abstract val canClose: Boolean
-}
-
 enum class LinkState { OPEN, LOCKED }
 
 data class ItemDto(
@@ -89,16 +68,7 @@ data class DialogueDto(
 )
 
 data class QuestionDto(
-    val id: String, val question: String, val answers: AnswersDto? = null, val reward: String? = null
-)
-
-data class AnswersDto(
-    val one: AnswerDto,
-    val two: AnswerDto,
-    val three: AnswerDto? = null,
-    val four: AnswerDto? = null,
-    val five: AnswerDto? = null,
-    val six: AnswerDto? = null
+    val id: String, val question: String, val answers: List<AnswerDto>? = null, val reward: String? = null
 )
 
 data class AnswerDto(

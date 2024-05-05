@@ -7,6 +7,8 @@ import java.io.File
 
 class ConfigurationManager {
     fun getManagersForGameFile(file: File): Either<KastleError, Managers> = either {
+
+
         Managers(
             state = GameState()
         )
