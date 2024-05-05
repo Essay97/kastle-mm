@@ -143,11 +143,15 @@ class RoomScope(private val roomId: String) {
     )
 
     fun character(characterId: String, init: CharacterScope.() -> Unit) {
-        TODO()
+        val scope = CharacterScope(characterId)
+        scope.init()
+        characters += scope.build()
     }
 
     fun item(itemId: String, init: ItemScope.() -> Unit) {
-        TODO()
+        val scope = ItemScope(itemId)
+        scope.init()
+        items += scope.build()
     }
 
     class BuildResult(val room: RoomDto, val items: List<ItemDto>, val characters: List<CharacterDto>)
@@ -170,10 +174,33 @@ class DirectionScope(private val roomId: String) {
     )
 }
 
+@KastleDsl
 class CharacterScope(private val characterId: String) {
     var name = characterId
+    var description: String? = null
+    private var matchers: List<String> = listOf()
+    private var dialogue: DialogueDto? = null
+
+    fun matchers(vararg words: String) {
+        matchers = words.asList()
+    }
+
+    fun dialogue(init: DialogueScope.() -> Unit) {
+        val scope = DialogueScope()
+        scope.init()
+        dialogue = scope.build()
+    }
+
+    fun build(): CharacterDto = CharacterDto(
+        id = characterId,
+        name = name,
+        description = description,
+        matchers = matchers,
+        dialogue = dialogue
+    )
 }
 
+@KastleDsl
 class ItemScope(private val itemId: String) {
     var name = itemId
     var description: String? = null
@@ -182,6 +209,69 @@ class ItemScope(private val itemId: String) {
     fun matchers(vararg words: String) {
         matchers = words.asList()
     }
+
+    fun build(): ItemDto = ItemDto(
+        name = name,
+        id = itemId,
+        description = description,
+        matchers = matchers
+    )
+}
+
+@KastleDsl
+class DialogueScope {
+    private var questions: MutableList<QuestionDto> = mutableListOf()
+    private var firstQuestionId = "d-question"
+
+    fun firstQuestion(questionId: String, init: QuestionScope.() -> Unit) {
+        val scope =  QuestionScope(questionId)
+        scope.init()
+        firstQuestionId = questionId
+        questions += scope.build()
+    }
+
+    fun question(questionId: String, init: QuestionScope.() -> Unit) {
+        val scope =  QuestionScope(questionId)
+        scope.init()
+        questions += scope.build()
+    }
+
+    fun build(): DialogueDto = DialogueDto(
+        firstQuestion = firstQuestionId,
+        questions = questions
+    )
+}
+
+@KastleDsl
+class QuestionScope(private val questionId: String) {
+    var text = "Default question"
+    var reward: String? = null //Item id of the object that will be dropped
+
+    private var answers: MutableList<AnswerDto> = mutableListOf()
+
+    fun answer(init: AnswerScope.() -> Unit) {
+        val scope = AnswerScope()
+        scope.init()
+        answers += scope.build()
+    }
+
+    fun build(): QuestionDto = QuestionDto(
+        id = questionId,
+        question = text,
+        answers = answers,
+        reward = reward
+    )
+}
+
+@KastleDsl
+class AnswerScope {
+    var text = "Default answer"
+    var nextQuestion = "d-question"
+
+    fun build(): AnswerDto = AnswerDto(
+        text = text,
+        nextQuestion = nextQuestion
+    )
 }
 
 fun test() {
@@ -207,6 +297,12 @@ fun test() {
                 state = LinkState.OPEN
                 behavior = LinkBehavior.COMPLETE
                 triggers("i-item1", "i-item2")
+            }
+
+            item("i-my-item") {
+                name = "Sword"
+                description = "It's a sword"
+                matchers("sword", "blade")
             }
         }
     }
