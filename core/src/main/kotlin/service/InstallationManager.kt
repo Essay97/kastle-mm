@@ -48,7 +48,7 @@ class InstallationManager private constructor(private val gamesDbFile: File) {
         }
     }
 
-    fun getGameFile(name: String): Either<ConfigError, File> = either {
+    fun getGameClass(name: String): Either<ConfigError, File> = either {
         val file = allGames[name]?.toFile()
         ensureNotNull(file) { GameFileError.NonExistentGame }
     }

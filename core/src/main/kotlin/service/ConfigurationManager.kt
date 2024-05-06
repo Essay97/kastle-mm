@@ -2,16 +2,77 @@ package service
 
 import arrow.core.Either
 import arrow.core.raise.either
+import arrow.core.raise.ensureNotNull
+import dto.*
 import error.KastleError
-import java.io.File
+import error.SerializationError
+import model.*
+import java.util.*
+
+interface GameProvider {
+    fun provideConfiguration(): GameConfiguration
+}
 
 class ConfigurationManager {
-    fun getManagersForGameFile(file: File): Either<KastleError, Managers> = either {
+    fun getManagersForGameClass(className: String): Either<KastleError, Managers> = either {
+        val gameProvider = ServiceLoader
+            .load(GameProvider::class.java)
+            .asIterable()
+            .find { it::class.qualifiedName == className }
+        ensureNotNull(gameProvider) {
+            SerializationError("Could not load class $className")
+        }
 
+        val config = gameProvider.provideConfiguration()
+
+        loadCharacters(config.characters ?: emptyList()).bind()
+        loadItems(config.items ?: emptyList()).bind()
+        loadRooms(config.rooms).bind()
+
+        val dungeonMap = config.rooms.associate {
+            RoomId(it.id).bind() to DungeonNode(
+                north = it.links?.north?.toLink()?.bind(),
+                south = it.links?.south?.toLink()?.bind(),
+                east = it.links?.east?.toLink()?.bind(),
+                west = it.links?.west?.toLink()?.bind()
+            )
+        }
+        val state = GameState(RoomId(config.initialRoomId).bind())
+        val movementManager = MovementManager(state, dungeonMap).bind()
+        val interactableManager = InteractableManager(state)
+        val informationManager =
+            InformationManager(config.metadata?.toGameMetadata(), config.preface ?: "", config.player.toPlayer())
+        val inventoryManager = InventoryManager(state)
+        val runManager =
+            RunManager(config.winningConditions?.toWinningConditions()?.bind(), state)
 
         Managers(
-            state = GameState()
+            state = state,
+            movementManager = movementManager,
+            interactableManager = interactableManager,
+            informationManager = informationManager,
+            inventoryManager = inventoryManager,
+            runManager = runManager,
+            commandManager = CommandManager()
         )
+    }
+
+    private fun loadRooms(rooms: List<RoomDto>): Either<KastleError, Unit> = either {
+        rooms.forEach {
+            Rooms.add(it.toRoom().bind())
+        }
+    }
+
+    private fun loadItems(items: List<ItemDto>): Either<KastleError, Unit> = either {
+        items.forEach {
+            Items.add(it.toItem().bind())
+        }
+    }
+
+    private fun loadCharacters(characters: List<CharacterDto>): Either<KastleError, Unit> = either {
+        characters.forEach {
+            Characters.add(it.toCharacter().bind())
+        }
     }
 }
 

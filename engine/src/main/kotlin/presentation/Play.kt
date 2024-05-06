@@ -17,8 +17,8 @@ import model.commands.CommandFactory
 
 class Play : CliktCommand(help = "Start playing with the specified game") {
 
-    private val configManager = InstallationManager().getOrElse { throw ProgramResult(4) }
-    private val serializationManager = ConfigurationManager()
+    private val installationManager = InstallationManager().getOrElse { throw ProgramResult(4) }
+    private val configurationManager = ConfigurationManager()
 
     private val gameName by argument()
 
@@ -26,12 +26,12 @@ class Play : CliktCommand(help = "Start playing with the specified game") {
         /*
          * Setup dependencies
          */
-        val gameFile = configManager.getGameFile(gameName).getOrElse {
+        val gameFile = installationManager.getGameFile(gameName).getOrElse {
             echo(it.description, err = true)
             throw ProgramResult(3)
         }
         val (commands, interactables, movement, information, running, inventory, state) =
-            serializationManager.getManagersForGameFile(gameFile).getOrElse {
+            configurationManager.getManagersForGameClass(gameFile).getOrElse {
                 echo(it.description, err = true)
                 throw ProgramResult(3)
             }

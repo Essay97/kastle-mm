@@ -5,17 +5,6 @@ import model.LinkBehavior
 @DslMarker
 annotation class KastleDsl
 
-class GameConfiguration(
-    val rooms: List<RoomDto>,
-    val player: PlayerDto,
-    val initialRoomId: String,
-    val items: List<ItemDto>?,
-    val characters: List<CharacterDto>?,
-    val metadata: MetadataDto?,
-    val winningConditions: WinningConditionsDto?,
-    val preface: String?
-)
-
 @KastleDsl
 fun game(initialRoomId: String, init: GameScope.() -> Unit): GameConfiguration {
     val scope = GameScope(initialRoomId)
@@ -332,7 +321,7 @@ class WinningConditionsScope {
     )
 }
 
-fun test() {
+private fun test() {
     game("my-room") {
         preface = "Once upon a time, not so long ago..."
 
