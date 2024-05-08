@@ -7,7 +7,7 @@ import it.saggioland.kastle.model.capabilities.Inspectable
 import it.saggioland.kastle.error.GameRuntimeError
 
 data class Character(
-    val id: it.saggioland.kastle.model.CharacterId,
+    val id: CharacterId,
     val name: String,
     private val dialogue: Question?,
     override val description: String,

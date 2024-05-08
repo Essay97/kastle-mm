@@ -40,7 +40,7 @@ class Room private constructor(
                 ensureNotNull(Items.getById(it)) { GameDefinitionError.IncoherentItemInRoom(id.value, it) }
             }
             mapOrAccumulate(characters, KastleError::join) {
-                ensureNotNull(it.saggioland.kastle.model.Characters.getById(it)) { GameDefinitionError.IncoherentCharacterInRoom(id.value, it) }
+                ensureNotNull(Characters.getById(it)) { GameDefinitionError.IncoherentCharacterInRoom(id.value, it) }
             }
             Room(id, name, description, characters, items)
         }

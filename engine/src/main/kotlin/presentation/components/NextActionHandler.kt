@@ -4,6 +4,7 @@ import com.varabyte.kotter.foundation.text.bold
 import com.varabyte.kotter.foundation.text.text
 import com.varabyte.kotter.foundation.text.textLine
 import com.varabyte.kotter.runtime.Session
+import it.saggioland.kastle.model.Characters
 import it.saggioland.kastle.service.CommandManager
 import it.saggioland.kastle.service.GameState
 import it.saggioland.kastle.service.InformationManager
@@ -71,7 +72,7 @@ fun Session.handleNextAction(
         is ExecuteDialogue -> {
             val action = commandManager.nextAction as ExecuteDialogue
             val dialogue = action.dialogue
-            val talkerName = it.saggioland.kastle.model.Characters.getById(dialogue.talker)!!.name
+            val talkerName = Characters.getById(dialogue.talker)!!.name
             section { bold { textLine("${talkerName.uppercase()}:") } }.run()
             var choice = dialogue.first().fold(
                 ifLeft = {
