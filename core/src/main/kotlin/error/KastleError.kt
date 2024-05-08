@@ -1,4 +1,4 @@
-package error
+package it.saggioland.kastle.error
 
 import model.CharacterId
 import model.ItemId

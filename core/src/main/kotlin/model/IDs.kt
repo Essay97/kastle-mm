@@ -3,7 +3,7 @@ package model
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensure
-import error.ValidationError
+import it.saggioland.kastle.error.ValidationError
 
 
 abstract class Id {

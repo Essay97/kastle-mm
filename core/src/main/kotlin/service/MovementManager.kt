@@ -5,8 +5,8 @@ import arrow.core.raise.either
 import arrow.core.raise.ensure
 import arrow.core.raise.ensureNotNull
 import model.*
-import error.GameDefinitionError
-import error.GameRuntimeError
+import it.saggioland.kastle.error.GameDefinitionError
+import it.saggioland.kastle.error.GameRuntimeError
 import kotlin.reflect.KProperty1
 
 class MovementManager private constructor(

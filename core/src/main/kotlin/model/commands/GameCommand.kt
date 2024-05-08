@@ -4,7 +4,7 @@ import arrow.core.Either
 import service.*
 import model.Direction
 import model.nextaction.NextAction
-import error.KastleError
+import it.saggioland.kastle.error.KastleError
 
 abstract class GameCommand {
     abstract fun execute(): Either<KastleError, NextAction>

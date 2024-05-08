@@ -3,7 +3,7 @@ package model
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
-import error.GameDefinitionError
+import it.saggioland.kastle.error.GameDefinitionError
 
 class WinningConditions private constructor(
     val playerOwns: ItemId? = null,

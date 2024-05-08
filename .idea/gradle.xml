@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/dev-plugin" />
             <option value="$PROJECT_DIR$/dsl" />
             <option value="$PROJECT_DIR$/engine" />
+            <option value="$PROJECT_DIR$/example-game" />
           </set>
         </option>
       </GradleProjectSettings>

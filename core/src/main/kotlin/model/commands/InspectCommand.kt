@@ -5,7 +5,7 @@ import arrow.core.raise.either
 import service.InteractableManager
 import model.nextaction.DescribeInspectable
 import model.nextaction.NextAction
-import error.KastleError
+import it.saggioland.kastle.error.KastleError
 
 class InspectCommand(
     private val matcher: String,

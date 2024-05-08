@@ -1,12 +1,12 @@
-package dto
+package it.saggioland.kastle.dto
 
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensure
 import arrow.core.raise.ensureNotNull
 import arrow.core.raise.mapOrAccumulate
-import error.KastleError
-import error.SerializationError
+import it.saggioland.kastle.error.KastleError
+import it.saggioland.kastle.error.SerializationError
 import model.*
 
 fun MetadataDto.toGameMetadata(): GameMetadata =

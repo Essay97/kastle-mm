@@ -4,7 +4,7 @@ import arrow.core.Either
 import arrow.core.left
 import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
-import error.*
+import it.saggioland.kastle.error.*
 import java.io.File
 import java.io.IOException
 import java.nio.file.Files
@@ -48,9 +48,11 @@ class InstallationManager private constructor(private val gamesDbFile: File) {
         }
     }
 
-    fun getGameClass(name: String): Either<ConfigError, File> = either {
+    fun getGameClass(name: String): Either<ConfigError, String> = either {
         val file = allGames[name]?.toFile()
         ensureNotNull(file) { GameFileError.NonExistentGame }
+        // TODO remove this, it's just to make everything compilable
+        "PLACEHOLDER"
     }
 
     companion object {

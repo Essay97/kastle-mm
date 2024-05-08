@@ -8,8 +8,8 @@ import service.InventoryManager
 import model.Items
 import model.nextaction.ConfirmDrop
 import model.nextaction.NextAction
-import error.GameRuntimeError
-import error.KastleError
+import it.saggioland.kastle.error.GameRuntimeError
+import it.saggioland.kastle.error.KastleError
 
 class DropCommand(
     private val matcher: String,

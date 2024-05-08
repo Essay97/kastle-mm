@@ -7,8 +7,8 @@ import arrow.core.raise.ensureNotNull
 import model.ItemId
 import model.Items
 import model.Rooms
-import error.GameRuntimeError
-import error.KastleError
+import it.saggioland.kastle.error.GameRuntimeError
+import it.saggioland.kastle.error.KastleError
 
 class InventoryManager(private val state: GameState) {
 

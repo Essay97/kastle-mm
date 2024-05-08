@@ -26,10 +26,10 @@ class Play : CliktCommand(help = "Start playing with the specified game") {
         /*
          * Setup dependencies
          */
-        val gameFile = installationManager.getGameFile(gameName).getOrElse {
+        val gameFile = /*installationManager.getGameClass(gameName).getOrElse {
             echo(it.description, err = true)
             throw ProgramResult(3)
-        }
+        }*/ "it.saggioland.example.ExampleGame"
         val (commands, interactables, movement, information, running, inventory, state) =
             configurationManager.getManagersForGameClass(gameFile).getOrElse {
                 echo(it.description, err = true)

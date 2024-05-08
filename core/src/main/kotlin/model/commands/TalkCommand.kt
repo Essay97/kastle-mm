@@ -4,11 +4,10 @@ import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensure
 import service.InteractableManager
-import model.Characters
 import model.nextaction.ExecuteDialogue
 import model.nextaction.NextAction
-import error.GameRuntimeError
-import error.KastleError
+import it.saggioland.kastle.error.GameRuntimeError
+import it.saggioland.kastle.error.KastleError
 
 class TalkCommand(private val matcher: String, private val interactableManager: InteractableManager) : GameCommand() {
     override fun execute(): Either<KastleError, NextAction> = either {

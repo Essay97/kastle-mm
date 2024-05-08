@@ -8,7 +8,7 @@ import model.Direction
 import model.Rooms
 import model.nextaction.ConfirmClose
 import model.nextaction.NextAction
-import error.KastleError
+import it.saggioland.kastle.error.KastleError
 
 class CloseCommand(
     private val direction: Direction, private val movementManager: MovementManager, val state: GameState

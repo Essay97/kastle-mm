@@ -8,7 +8,7 @@ import model.Direction
 import model.Rooms
 import model.nextaction.ConfirmOpen
 import model.nextaction.NextAction
-import error.KastleError
+import it.saggioland.kastle.error.KastleError
 
 class OpenCommand(private val direction: Direction, private val movementManager: MovementManager, private val state: GameState) : GameCommand() {
     override fun execute(): Either<KastleError, NextAction> = either {

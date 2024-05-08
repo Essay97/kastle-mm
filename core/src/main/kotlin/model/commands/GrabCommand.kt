@@ -7,7 +7,7 @@ import service.InventoryManager
 import model.Items
 import model.nextaction.ConfirmGrab
 import model.nextaction.NextAction
-import error.KastleError
+import it.saggioland.kastle.error.KastleError
 
 class GrabCommand(
     private val matcher: String,

@@ -3,7 +3,7 @@ package service
 import model.commands.GameCommand
 import model.nextaction.DescribeCurrentRoom
 import model.nextaction.NextAction
-import error.KastleError
+import it.saggioland.kastle.error.KastleError
 
 class CommandManager {
     private val _history: MutableList<GameCommand> = mutableListOf()

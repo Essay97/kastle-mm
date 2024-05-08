@@ -3,10 +3,12 @@ package service
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
-import dto.*
-import error.KastleError
-import error.SerializationError
+import it.saggioland.kastle.dto.*
+import it.saggioland.kastle.error.KastleError
+import it.saggioland.kastle.error.SerializationError
 import model.*
+import java.io.File
+import java.net.URLClassLoader
 import java.util.*
 
 interface GameProvider {
@@ -15,10 +17,18 @@ interface GameProvider {
 
 class ConfigurationManager {
     fun getManagersForGameClass(className: String): Either<KastleError, Managers> = either {
+        val folder = File("${System.getProperty("user.home")}/.kastle/games/")
+
+        val child = URLClassLoader(
+            folder.listFiles().map { it.toURI().toURL() }.toTypedArray(),
+            this.javaClass.classLoader
+        )
+
         val gameProvider = ServiceLoader
-            .load(GameProvider::class.java)
+            .load(GameProvider::class.java, child)
             .asIterable()
             .find { it::class.qualifiedName == className }
+
         ensureNotNull(gameProvider) {
             SerializationError("Could not load class $className")
         }

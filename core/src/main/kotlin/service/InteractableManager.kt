@@ -5,7 +5,7 @@ import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
 import model.*
 import model.capabilities.Inspectable
-import error.GameRuntimeError
+import it.saggioland.kastle.error.GameRuntimeError
 
 class InteractableManager(private val state: GameState) {
     fun getForInspection(matcher: String): Either<GameRuntimeError.CannotFindInspectable, Inspectable> = either {

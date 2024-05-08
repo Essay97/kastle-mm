@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin)
+    application
 }
 
 version = "1.0-SNAPSHOT"
@@ -12,6 +13,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     implementation(project(":core"))
+    implementation(project(":dsl"))
     implementation(libs.clikt)
     implementation(libs.kotter)
     implementation(libs.arrow)
@@ -20,4 +22,8 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+application {
+    mainClass.set("MainKt")
 }

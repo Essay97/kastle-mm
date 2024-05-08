@@ -4,7 +4,7 @@ import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
 import model.capabilities.Inspectable
-import error.GameRuntimeError
+import it.saggioland.kastle.error.GameRuntimeError
 
 data class Character(
     val id: model.CharacterId,

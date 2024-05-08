@@ -3,6 +3,7 @@ kotlinGradlePlugin = "1.9.23"
 arrow = "1.2.0"
 kotter = "1.1.1"
 clikt = "4.2.1"
+modules-graph = "2.5.0"
 kotlinx-datetime = "0.6.0-RC.2"
 [libraries]
 arrow = { group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow" }
@@ -11,3 +12,4 @@ clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime"}
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinGradlePlugin" }
+modules-graph-assert = { id = "com.jraska.module.graph.assertion", version.ref = "modules-graph"}

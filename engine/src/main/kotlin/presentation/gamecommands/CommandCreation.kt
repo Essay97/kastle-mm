@@ -9,7 +9,7 @@ import arrow.core.right
 import model.Direction
 import model.commands.CommandFactory
 import model.commands.GameCommand
-import error.PlayerError
+import it.saggioland.kastle.error.PlayerError
 
 fun getCommand(command: String, argument: String?, factory: CommandFactory):
         Either<PlayerError, GameCommand> =

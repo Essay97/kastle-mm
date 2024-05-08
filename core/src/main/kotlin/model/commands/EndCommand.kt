@@ -5,7 +5,7 @@ import arrow.core.right
 import service.RunManager
 import model.nextaction.EndGame
 import model.nextaction.NextAction
-import error.KastleError
+import it.saggioland.kastle.error.KastleError
 
 class EndCommand(private val runManager: RunManager) : GameCommand() {
     override fun execute(): Either<KastleError, NextAction> {

@@ -5,8 +5,8 @@ import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
 import arrow.core.raise.mapOrAccumulate
 import model.capabilities.Inspectable
-import error.GameDefinitionError
-import error.KastleError
+import it.saggioland.kastle.error.GameDefinitionError
+import it.saggioland.kastle.error.KastleError
 
 class Room private constructor(
     val id: RoomId,

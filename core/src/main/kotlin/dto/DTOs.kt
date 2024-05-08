@@ -1,4 +1,4 @@
-package dto
+package it.saggioland.kastle.dto
 
 import kotlinx.datetime.LocalDate
 import model.LinkBehavior
