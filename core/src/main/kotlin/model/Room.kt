@@ -1,10 +1,10 @@
-package model
+package it.saggioland.kastle.model
 
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
 import arrow.core.raise.mapOrAccumulate
-import model.capabilities.Inspectable
+import it.saggioland.kastle.model.capabilities.Inspectable
 import it.saggioland.kastle.error.GameDefinitionError
 import it.saggioland.kastle.error.KastleError
 
@@ -40,7 +40,7 @@ class Room private constructor(
                 ensureNotNull(Items.getById(it)) { GameDefinitionError.IncoherentItemInRoom(id.value, it) }
             }
             mapOrAccumulate(characters, KastleError::join) {
-                ensureNotNull(model.Characters.getById(it)) { GameDefinitionError.IncoherentCharacterInRoom(id.value, it) }
+                ensureNotNull(it.saggioland.kastle.model.Characters.getById(it)) { GameDefinitionError.IncoherentCharacterInRoom(id.value, it) }
             }
             Room(id, name, description, characters, items)
         }

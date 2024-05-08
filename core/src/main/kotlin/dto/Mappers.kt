@@ -7,7 +7,7 @@ import arrow.core.raise.ensureNotNull
 import arrow.core.raise.mapOrAccumulate
 import it.saggioland.kastle.error.KastleError
 import it.saggioland.kastle.error.SerializationError
-import model.*
+import it.saggioland.kastle.model.*
 
 fun MetadataDto.toGameMetadata(): GameMetadata =
     GameMetadata(author, version, published, kastleVersions)

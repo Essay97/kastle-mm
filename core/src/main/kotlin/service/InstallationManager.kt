@@ -1,4 +1,4 @@
-package service
+package it.saggioland.kastle.service
 
 import arrow.core.Either
 import arrow.core.left

@@ -1,9 +1,9 @@
-package model.nextaction
+package it.saggioland.kastle.model.nextaction
 
-import model.Dialogue
-import model.Room
-import model.StorableItem
-import model.capabilities.Inspectable
+import it.saggioland.kastle.model.Dialogue
+import it.saggioland.kastle.model.Room
+import it.saggioland.kastle.model.StorableItem
+import it.saggioland.kastle.model.capabilities.Inspectable
 
 sealed class NextAction
 data object DescribeCurrentRoom : NextAction()

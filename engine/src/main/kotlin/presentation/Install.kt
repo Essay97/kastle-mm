@@ -5,7 +5,7 @@ import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.ProgramResult
 import com.github.ajalt.clikt.parameters.arguments.argument
 import com.github.ajalt.clikt.parameters.types.path
-import service.InstallationManager
+import it.saggioland.kastle.service.InstallationManager
 import java.nio.file.Path
 
 class Install : CliktCommand(help = "Install a new game") {

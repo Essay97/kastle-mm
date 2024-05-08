@@ -1,7 +1,7 @@
 package it.saggioland.kastle.dto
 
 import kotlinx.datetime.LocalDate
-import model.LinkBehavior
+import it.saggioland.kastle.model.LinkBehavior
 
 
 data class MetadataDto(

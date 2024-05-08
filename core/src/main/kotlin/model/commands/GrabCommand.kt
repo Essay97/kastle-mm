@@ -1,12 +1,12 @@
-package model.commands
+package it.saggioland.kastle.model.commands
 
 import arrow.core.Either
 import arrow.core.raise.either
-import service.InteractableManager
-import service.InventoryManager
-import model.Items
-import model.nextaction.ConfirmGrab
-import model.nextaction.NextAction
+import it.saggioland.kastle.service.InteractableManager
+import it.saggioland.kastle.service.InventoryManager
+import it.saggioland.kastle.model.Items
+import it.saggioland.kastle.model.nextaction.ConfirmGrab
+import it.saggioland.kastle.model.nextaction.NextAction
 import it.saggioland.kastle.error.KastleError
 
 class GrabCommand(

@@ -11,9 +11,9 @@ import com.varabyte.kotter.foundation.text.text
 import com.varabyte.kotter.foundation.text.textLine
 import presentation.components.*
 import presentation.gamecommands.getCommand
-import service.InstallationManager
-import service.ConfigurationManager
-import model.commands.CommandFactory
+import it.saggioland.kastle.service.InstallationManager
+import it.saggioland.kastle.service.ConfigurationManager
+import it.saggioland.kastle.model.commands.CommandFactory
 
 class Play : CliktCommand(help = "Start playing with the specified game") {
 

@@ -1,9 +1,9 @@
-package model.commands
+package it.saggioland.kastle.model.commands
 
 import arrow.core.Either
-import service.*
-import model.Direction
-import model.nextaction.NextAction
+import it.saggioland.kastle.service.*
+import it.saggioland.kastle.model.Direction
+import it.saggioland.kastle.model.nextaction.NextAction
 import it.saggioland.kastle.error.KastleError
 
 abstract class GameCommand {

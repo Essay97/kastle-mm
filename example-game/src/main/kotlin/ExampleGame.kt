@@ -3,8 +3,8 @@ package it.saggioland.example
 import it.saggioland.kastle.dto.GameConfiguration
 import it.saggioland.kastle.dto.LinkState
 import it.saggioland.dsl.game
-import model.LinkBehavior
-import service.GameProvider
+import it.saggioland.kastle.model.LinkBehavior
+import it.saggioland.kastle.service.GameProvider
 
 class ExampleGame : GameProvider {
     override fun provideConfiguration(): GameConfiguration = game("r-room-1") {

@@ -1,13 +1,13 @@
-package model
+package it.saggioland.kastle.model
 
 object Characters {
-    private val characters = mutableMapOf<model.CharacterId, model.Character>()
+    private val characters = mutableMapOf<it.saggioland.kastle.model.CharacterId, it.saggioland.kastle.model.Character>()
 
-    fun getById(id: model.CharacterId): model.Character? = model.Characters.characters[id]
+    fun getById(id: it.saggioland.kastle.model.CharacterId): it.saggioland.kastle.model.Character? = it.saggioland.kastle.model.Characters.characters[id]
 
-    fun add(vararg characters: model.Character) {
+    fun add(vararg characters: it.saggioland.kastle.model.Character) {
         characters.forEach {
-            model.Characters.characters[it.id] = it
+            it.saggioland.kastle.model.Characters.characters[it.id] = it
         }
     }
 }

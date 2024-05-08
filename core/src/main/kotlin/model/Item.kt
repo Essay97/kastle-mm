@@ -1,6 +1,6 @@
-package model
+package it.saggioland.kastle.model
 
-import model.capabilities.Inspectable
+import it.saggioland.kastle.model.capabilities.Inspectable
 
 sealed class Item : Inspectable {
     abstract val id: ItemId

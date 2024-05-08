@@ -1,4 +1,4 @@
-package model
+package it.saggioland.kastle.model
 
 object Items {
     private val items = mutableMapOf<ItemId, Item>()

@@ -1,8 +1,8 @@
-package service
+package it.saggioland.kastle.service
 
-import model.commands.GameCommand
-import model.nextaction.DescribeCurrentRoom
-import model.nextaction.NextAction
+import it.saggioland.kastle.model.commands.GameCommand
+import it.saggioland.kastle.model.nextaction.DescribeCurrentRoom
+import it.saggioland.kastle.model.nextaction.NextAction
 import it.saggioland.kastle.error.KastleError
 
 class CommandManager {

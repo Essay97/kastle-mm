@@ -1,9 +1,9 @@
-package model.commands
+package it.saggioland.kastle.model.commands
 
 import arrow.core.Either
 import arrow.core.right
-import model.nextaction.DescribePlayer
-import model.nextaction.NextAction
+import it.saggioland.kastle.model.nextaction.DescribePlayer
+import it.saggioland.kastle.model.nextaction.NextAction
 import it.saggioland.kastle.error.KastleError
 
 class WhoCommand : GameCommand() {

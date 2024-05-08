@@ -2,7 +2,7 @@ package it.saggioland.dsl
 
 import it.saggioland.kastle.dto.*
 import kotlinx.datetime.LocalDate
-import model.LinkBehavior
+import it.saggioland.kastle.model.LinkBehavior
 
 @DslMarker
 annotation class KastleDsl

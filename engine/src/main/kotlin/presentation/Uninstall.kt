@@ -4,7 +4,7 @@ import arrow.core.getOrElse
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.ProgramResult
 import com.github.ajalt.clikt.parameters.arguments.argument
-import service.InstallationManager
+import it.saggioland.kastle.service.InstallationManager
 
 class Uninstall : CliktCommand(help = "Uninstall an installed game") {
 

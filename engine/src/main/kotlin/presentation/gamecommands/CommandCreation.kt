@@ -6,9 +6,9 @@ import arrow.core.raise.either
 import arrow.core.raise.ensure
 import arrow.core.raise.ensureNotNull
 import arrow.core.right
-import model.Direction
-import model.commands.CommandFactory
-import model.commands.GameCommand
+import it.saggioland.kastle.model.Direction
+import it.saggioland.kastle.model.commands.CommandFactory
+import it.saggioland.kastle.model.commands.GameCommand
 import it.saggioland.kastle.error.PlayerError
 
 fun getCommand(command: String, argument: String?, factory: CommandFactory):

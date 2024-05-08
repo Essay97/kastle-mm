@@ -6,7 +6,7 @@ import arrow.core.raise.either
 import arrow.core.raise.ensure
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.ProgramResult
-import service.InstallationManager
+import it.saggioland.kastle.service.InstallationManager
 import it.saggioland.kastle.error.NegativePaddingError
 
 class List : CliktCommand(help = "List all installed games with their file definition location") {

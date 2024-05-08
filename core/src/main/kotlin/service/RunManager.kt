@@ -1,6 +1,6 @@
-package service
+package it.saggioland.kastle.service
 
-import model.WinningConditions
+import it.saggioland.kastle.model.WinningConditions
 
 class RunManager(
     private val winningConditions: WinningConditions?,

@@ -1,4 +1,4 @@
-package model
+package it.saggioland.kastle.model
 
 object Rooms {
     private val rooms = mutableMapOf<RoomId, Room>()

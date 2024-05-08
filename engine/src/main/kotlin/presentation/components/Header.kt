@@ -9,7 +9,7 @@ import com.varabyte.kotterx.decorations.BorderCharacters
 import com.varabyte.kotterx.decorations.bordered
 import com.varabyte.kotterx.text.Justification
 import com.varabyte.kotterx.text.justified
-import model.GameMetadata
+import it.saggioland.kastle.model.GameMetadata
 
 fun Session.header(metadata: GameMetadata?, gameName: String) = section {
     bordered(

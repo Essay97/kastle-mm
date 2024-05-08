@@ -1,10 +1,10 @@
-package model.commands
+package it.saggioland.kastle.model.commands
 
 import arrow.core.Either
 import arrow.core.raise.either
-import service.InteractableManager
-import model.nextaction.DescribeInspectable
-import model.nextaction.NextAction
+import it.saggioland.kastle.service.InteractableManager
+import it.saggioland.kastle.model.nextaction.DescribeInspectable
+import it.saggioland.kastle.model.nextaction.NextAction
 import it.saggioland.kastle.error.KastleError
 
 class InspectCommand(

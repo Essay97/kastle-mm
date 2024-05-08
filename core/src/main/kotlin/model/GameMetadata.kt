@@ -1,4 +1,4 @@
-package model
+package it.saggioland.kastle.model
 
 import kotlinx.datetime.LocalDate
 
