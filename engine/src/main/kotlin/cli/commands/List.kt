@@ -1,4 +1,4 @@
-package presentation
+package cli.commands
 
 import arrow.core.Either
 import arrow.core.getOrElse

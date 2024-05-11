@@ -1,4 +1,4 @@
-package presentation
+package cli.commands
 
 import arrow.core.getOrElse
 import com.github.ajalt.clikt.core.CliktCommand

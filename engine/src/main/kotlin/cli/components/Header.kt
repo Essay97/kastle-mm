@@ -1,4 +1,4 @@
-package presentation.components
+package cli.components
 
 import com.varabyte.kotter.foundation.render.offscreen
 import com.varabyte.kotter.foundation.text.bold

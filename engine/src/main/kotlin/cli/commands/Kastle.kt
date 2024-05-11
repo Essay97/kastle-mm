@@ -1,4 +1,4 @@
-package presentation
+package cli.commands
 
 import com.github.ajalt.clikt.core.NoOpCliktCommand
 import kotlin.collections.List

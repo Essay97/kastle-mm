@@ -1,4 +1,4 @@
-package presentation.gamecommands
+package cli.ingamecommands
 
 import com.varabyte.kotter.foundation.input.Completions
 

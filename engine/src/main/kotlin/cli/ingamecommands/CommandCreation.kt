@@ -1,4 +1,4 @@
-package presentation.gamecommands
+package cli.ingamecommands
 
 import arrow.core.Either
 import arrow.core.left

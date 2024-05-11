@@ -1,4 +1,4 @@
-package presentation.components
+package cli.components
 
 import com.varabyte.kotter.foundation.input.Keys
 import com.varabyte.kotter.foundation.input.onKeyPressed

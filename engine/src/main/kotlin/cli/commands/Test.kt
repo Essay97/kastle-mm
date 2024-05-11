@@ -1,8 +1,8 @@
-package presentation
+package cli.commands
 
 import com.github.ajalt.clikt.core.CliktCommand
 import com.varabyte.kotter.foundation.session
-import presentation.components.choiceSelector
+import cli.components.choiceSelector
 
 class Test : CliktCommand() {
     override fun run() {

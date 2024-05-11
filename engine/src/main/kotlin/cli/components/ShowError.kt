@@ -1,4 +1,4 @@
-package presentation.components
+package cli.components
 
 import com.varabyte.kotter.foundation.text.red
 import com.varabyte.kotter.foundation.text.textLine
