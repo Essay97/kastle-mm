@@ -1,4 +1,4 @@
-package cli.commands
+package it.saggioland.kastle.cli.commands
 
 import arrow.core.getOrElse
 import com.github.ajalt.clikt.core.CliktCommand

@@ -1,4 +1,4 @@
-package cli.ingamecommands
+package it.saggioland.kastle.cli.ingamecommands
 
 import arrow.core.Either
 import arrow.core.left

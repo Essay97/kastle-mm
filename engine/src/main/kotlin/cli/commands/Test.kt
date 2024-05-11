@@ -1,8 +1,8 @@
-package cli.commands
+package it.saggioland.kastle.cli.commands
 
 import com.github.ajalt.clikt.core.CliktCommand
 import com.varabyte.kotter.foundation.session
-import cli.components.choiceSelector
+import it.saggioland.kastle.cli.components.choiceSelector
 
 class Test : CliktCommand() {
     override fun run() {

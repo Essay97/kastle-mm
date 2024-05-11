@@ -1,4 +1,4 @@
-package cli.components
+package it.saggioland.kastle.cli.components
 
 import com.varabyte.kotter.foundation.text.bold
 import com.varabyte.kotter.foundation.text.green

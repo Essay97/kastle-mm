@@ -1,7 +1,6 @@
-package cli.commands
+package it.saggioland.kastle.cli.commands
 
 import arrow.core.getOrElse
-import cli.components.*
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.ProgramResult
 import com.github.ajalt.clikt.parameters.arguments.argument
@@ -10,7 +9,8 @@ import com.varabyte.kotter.foundation.text.bold
 import com.varabyte.kotter.foundation.text.cyan
 import com.varabyte.kotter.foundation.text.text
 import com.varabyte.kotter.foundation.text.textLine
-import cli.ingamecommands.getCommand
+import it.saggioland.kastle.cli.ingamecommands.getCommand
+import it.saggioland.kastle.cli.components.*
 import it.saggioland.kastle.service.InstallationManager
 import it.saggioland.kastle.service.ConfigurationManager
 import it.saggioland.kastle.model.commands.CommandFactory

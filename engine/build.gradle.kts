@@ -25,5 +25,5 @@ tasks.test {
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("it.saggioland.kastle.MainKt")
 }

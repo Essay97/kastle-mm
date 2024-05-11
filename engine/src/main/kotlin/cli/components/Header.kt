@@ -1,4 +1,4 @@
-package cli.components
+package it.saggioland.kastle.cli.components
 
 import com.varabyte.kotter.foundation.render.offscreen
 import com.varabyte.kotter.foundation.text.bold

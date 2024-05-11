@@ -1,4 +1,4 @@
-package cli.commands
+package it.saggioland.kastle.cli.commands
 
 import arrow.core.Either
 import arrow.core.getOrElse

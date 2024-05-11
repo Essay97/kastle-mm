@@ -1,4 +1,4 @@
-package cli.components
+package it.saggioland.kastle.cli.components
 
 import com.varabyte.kotter.foundation.input.Keys
 import com.varabyte.kotter.foundation.input.onKeyPressed
