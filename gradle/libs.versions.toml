@@ -5,11 +5,14 @@ kotter = "1.1.1"
 clikt = "4.2.1"
 modules-graph = "2.5.0"
 kotlinx-datetime = "0.6.0-RC.2"
+sqlite = "2.0.1"
 [libraries]
 arrow = { group = "io.arrow-kt", name = "arrow-core", version.ref = "arrow" }
 kotter = { group = "com.varabyte.kotter", name = "kotter-jvm", version.ref = "kotter" }
 clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime"}
+sqlite-driver = { group = "app.cash.sqldelight", name = "sqlite-driver", version.ref = "sqlite" }
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinGradlePlugin" }
 modules-graph-assert = { id = "com.jraska.module.graph.assertion", version.ref = "modules-graph"}
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqlite"}

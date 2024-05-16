@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin)
     application
+    alias(libs.plugins.sqldelight)
 }
 
 version = "1.0-SNAPSHOT"
@@ -18,6 +19,7 @@ dependencies {
     implementation(libs.kotter)
     implementation(libs.arrow)
     implementation(libs.kotlinx.datetime)
+    implementation(libs.sqlite.driver)
 }
 
 tasks.test {
@@ -26,4 +28,12 @@ tasks.test {
 
 application {
     mainClass.set("it.saggioland.kastle.MainKt")
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("it.saggioland.kastle.db")
+        }
+    }
 }

@@ -1,0 +1,6 @@
+CREATE TABLE installedGames (
+    id INTEGER PRIMARY KEY NOT NULL,
+    gameName TEXT UNIQUE KEY NOT NULL,
+    mainClass TEXT UNIQUE KEY NOT NULL,
+    fileName TEXT UNIQUE KEY NOT NULL
+)
