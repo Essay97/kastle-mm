@@ -12,11 +12,7 @@ import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
-import java.nio.file.StandardOpenOption
-import kotlin.io.path.absolutePathString
-import kotlin.io.path.bufferedReader
-import kotlin.io.path.bufferedWriter
-import kotlin.io.path.readLines
+import kotlin.io.path.*
 
 class InstallationManager private constructor(private val gamesDbFile: Path) {
 
@@ -43,12 +39,10 @@ class InstallationManager private constructor(private val gamesDbFile: Path) {
             return namePathMap
         }
 
-    fun installGame(name: String, path: Path) {
-        Files.write(
-            gamesDbFile,
-            "$name=${path.absolutePathString()}\n".toByteArray(),
-            StandardOpenOption.APPEND
-        )
+    fun installGame(name: String, path: Path, className: String): Either<ConfigError, Unit> = either {
+        val game = db.gamesQueries.getFilteredGames(name, className, path.pathString).executeAsOneOrNull()
+        ensureNotNull(game) { GameFileError.GameAlreadyExists }
+        db.gamesQueries.insert(gameName = name, mainClass = className, fileName = path.pathString)
     }
 
     fun uninstallGame(name: String) {
@@ -63,10 +57,7 @@ class InstallationManager private constructor(private val gamesDbFile: Path) {
     }
 
     fun getGameClass(name: String): Either<ConfigError, String> = either {
-        val file = allGames[name]?.toFile()
-        ensureNotNull(file) { GameFileError.NonExistentGame }
-        // TODO remove this, it's just to make everything compilable
-        "PLACEHOLDER"
+        db.gamesQueries.getByGameName(name).executeAsOne().mainClass
     }
 
     companion object {

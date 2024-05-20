@@ -11,7 +11,10 @@ import it.saggioland.kastle.error.NegativePaddingError
 
 class List : CliktCommand(help = "List all installed games with their file definition location") {
 
-    private val configManager = InstallationManager().getOrElse { throw ProgramResult(4) }
+    private val configManager = InstallationManager().getOrElse {
+        echo(it.description, err = true)
+        throw ProgramResult(4)
+    }
 
     private val gameNameHeaderPadding = 12
     private val gameNameHeaderString =
@@ -40,7 +43,7 @@ class List : CliktCommand(help = "List all installed games with their file defin
     }
 
     /**
-     * Calculates spaces needed to rendere a game name.
+     * Calculates spaces needed to render a game name.
      *
      * Do not confuse it with the [gameNameHeaderPadding] property, that does the same thing for the header of the table.
      * @param[gameName] the name for which to calculate the padding

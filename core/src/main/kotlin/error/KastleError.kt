@@ -46,6 +46,7 @@ open class DbFileError(description: String) : ConfigError(description) {
 
 open class GameFileError(description: String) : ConfigError(description) {
     data object NonExistentGame : GameFileError("Game does not exist")
+    data object GameAlreadyExists : GameFileError("Game already exists")
 
     override fun join(second: KastleError): KastleError =
         GameFileError("$description\n${second.description}")

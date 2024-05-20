@@ -13,7 +13,10 @@ import kotlin.io.path.nameWithoutExtension
 
 class Install : CliktCommand(help = "Install a new game") {
 
-    private val installationManager = InstallationManager().getOrElse { throw ProgramResult(4) }
+    private val installationManager = InstallationManager().getOrElse {
+        echo(it.description, err = true)
+        throw ProgramResult(4)
+    }
 
     private val gameClass by argument()
     private val gamePath by argument().path(
@@ -26,17 +29,10 @@ class Install : CliktCommand(help = "Install a new game") {
 
 
     override fun run() {
-        if (gameExists(gameName, gamePath)) {
-            echo("error: game $gameName already installed.")
+        installationManager.installGame(gameName, gamePath, gameClass).getOrElse {
+            echo(it.description, err = true)
             throw ProgramResult(2)
-        } else {
-            installationManager.installGame(gameName, gamePath)
-            echo("$gameName installed correctly.")
         }
+        echo("$gameName installed correctly.")
     }
-
-    private fun gameExists(name: String, path: Path): Boolean = installationManager.allGames.entries.any { game ->
-        game.key == name || game.value == path
-    }
-
 }

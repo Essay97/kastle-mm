@@ -10,7 +10,10 @@ class Uninstall : CliktCommand(help = "Uninstall an installed game") {
 
     private val gameName by argument()
 
-    private val configManager = InstallationManager().getOrElse { throw ProgramResult(4) }
+    private val configManager = InstallationManager().getOrElse {
+        echo(it.description, err = true)
+        throw ProgramResult(4)
+    }
 
     override fun run() {
         if (!configManager.allGames.containsKey(gameName)) {

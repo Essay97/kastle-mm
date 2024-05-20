@@ -17,7 +17,10 @@ import it.saggioland.kastle.model.commands.CommandFactory
 
 class Play : CliktCommand(help = "Start playing with the specified game") {
 
-    private val installationManager = InstallationManager().getOrElse { throw ProgramResult(4) }
+    private val installationManager = InstallationManager().getOrElse {
+        echo(it.description, err = true)
+        throw ProgramResult(4)
+    }
     private val configurationManager = ConfigurationManager()
 
     private val gameName by argument()
@@ -26,12 +29,12 @@ class Play : CliktCommand(help = "Start playing with the specified game") {
         /*
          * Setup dependencies
          */
-        val gameFile = /*installationManager.getGameClass(gameName).getOrElse {
+        val gameClass = /*installationManager.getGameClass(gameName).getOrElse {
             echo(it.description, err = true)
             throw ProgramResult(3)
         }*/ "it.saggioland.example.ExampleGame"
         val (commands, interactables, movement, information, running, inventory, state) =
-            configurationManager.getManagersForGameClass(gameFile).getOrElse {
+            configurationManager.getManagersForGameClass(gameClass).getOrElse {
                 echo(it.description, err = true)
                 throw ProgramResult(3)
             }
