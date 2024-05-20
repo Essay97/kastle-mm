@@ -4,3 +4,11 @@ CREATE TABLE installedGames (
     mainClass TEXT UNIQUE NOT NULL,
     fileName TEXT UNIQUE NOT NULL
 );
+
+insert:
+INSERT INTO installedGames (gameName, mainClass, fileName)
+VALUES (?, ?, ?)
+
+getByGameName:
+SELECT * FROM installedGames
+WHERE gameName = ?
