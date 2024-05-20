@@ -33,12 +33,18 @@ open class KastleDirectoryError(description: String) : ConfigError(description) 
         KastleDirectoryError("$description\n${second.description}")
 }
 
+open class GamesDirectoryError(description: String) : ConfigError(description) {
+    data object NoPermission : GamesDirectoryError("Insufficient permission to access games directory")
+
+    override fun join(second: KastleError): KastleError =
+        KastleDirectoryError("$description\n${second.description}")
+}
+
 open class DbFileError(description: String) : ConfigError(description) {
     data object NoPermission :
         DbFileError("Insufficient permission to access games.db file in \$HOME/.kastle directory")
 
     data object IOError : DbFileError("Filesystem raised an IO error")
-    data object CreationError : DbFileError("Could not create games.db file in \$HOME/.kastle directory")
 
     override fun join(second: KastleError): KastleError =
         DbFileError("$description\n${second.description}")
@@ -51,6 +57,8 @@ open class GameFileError(description: String) : ConfigError(description) {
     override fun join(second: KastleError): KastleError =
         GameFileError("$description\n${second.description}")
 }
+
+
 
 /*
  * Serialization Errors
