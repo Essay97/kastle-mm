@@ -41,14 +41,16 @@ class InstallationManager private constructor(private val gamesDbFile: Path) {
             return namePathMap
         }
 
-    fun installGame(name: String, path: Path, className: String): Either<ConfigError, Unit> = either {
+    fun installGame(name: String, gameFile: Path, className: String): Either<ConfigError, Unit> = either {
         // Insert game into database
-        val game = queries.getFilteredGames(name, className, path.pathString).executeAsOneOrNull()
+        val gameFileName = gameFile.fileName.name
+        val game = queries.getFilteredGames(name, className, gameFileName).executeAsOneOrNull()
         ensureNotNull(game) { GameFileError.GameAlreadyExists }
-        queries.insert(gameName = name, mainClass = className, fileName = path.pathString)
+        queries.insert(gameName = name, mainClass = className, fileName = gameFileName)
 
-        // Move game file into games folder. Needed for ServiceLoader so that all files are in a predictable folder
-        val gamesFolder = handleGamesFolder()
+        // Copy game file into games folder. Needed for ServiceLoader so that all files are in a predictable folder
+        val gamesFolder = handleGamesFolder().bind()
+        Files.copy(gameFile, gamesFolder)
     }
 
     fun uninstallGame(name: String) {
