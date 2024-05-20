@@ -1,5 +1,6 @@
 package it.saggioland.kastle.service
 
+import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 import arrow.core.Either
 import arrow.core.left
@@ -16,6 +17,15 @@ import java.nio.file.StandardOpenOption
 import kotlin.io.path.absolutePathString
 
 class InstallationManager private constructor(private val gamesDbFile: File) {
+
+    private val db: Database
+
+    init {
+        val jdbcString = "jdbc:sqlite:${gamesDbFile.absolutePath}"
+        val driver: SqlDriver = JdbcSqliteDriver(jdbcString)
+
+        db = Database(driver)
+    }
 
     val allGames: Map<String, Path>
         get() {
