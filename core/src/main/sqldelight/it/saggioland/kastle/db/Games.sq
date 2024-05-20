@@ -7,8 +7,21 @@ CREATE TABLE installedGames (
 
 insert:
 INSERT INTO installedGames (gameName, mainClass, fileName)
-VALUES (?, ?, ?)
+VALUES (?, ?, ?);
+
+getAll:
+SELECT * FROM installedGames;
+
+getFilteredGames:
+SELECT * FROM installedGames
+WHERE gameName = ?
+OR mainClass = ?
+OR fileName = ?;
 
 getByGameName:
 SELECT * FROM installedGames
-WHERE gameName = ?
+WHERE gameName = ?;
+
+deleteByGameName:
+DELETE FROM installedGames
+WHERE gameName = ?;

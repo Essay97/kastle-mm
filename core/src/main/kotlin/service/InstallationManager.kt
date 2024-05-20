@@ -8,21 +8,23 @@ import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
 import it.saggioland.kastle.db.Database
 import it.saggioland.kastle.error.*
-import java.io.File
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.nio.file.StandardOpenOption
 import kotlin.io.path.absolutePathString
+import kotlin.io.path.bufferedReader
+import kotlin.io.path.bufferedWriter
+import kotlin.io.path.readLines
 
-class InstallationManager private constructor(private val gamesDbFile: File) {
+class InstallationManager private constructor(private val gamesDbFile: Path) {
 
     private val db: Database
 
     init {
-        val jdbcString = "jdbc:sqlite:${gamesDbFile.absolutePath}"
-        val driver: SqlDriver = JdbcSqliteDriver(jdbcString)
+        val jdbcString = "jdbc:sqlite:${gamesDbFile.absolutePathString()}"
+        val driver: SqlDriver = JdbcSqliteDriver(url = jdbcString, schema = Database.Schema)
 
         db = Database(driver)
     }
@@ -43,7 +45,7 @@ class InstallationManager private constructor(private val gamesDbFile: File) {
 
     fun installGame(name: String, path: Path) {
         Files.write(
-            Paths.get(gamesDbFile.toURI()),
+            gamesDbFile,
             "$name=${path.absolutePathString()}\n".toByteArray(),
             StandardOpenOption.APPEND
         )
@@ -86,12 +88,13 @@ class InstallationManager private constructor(private val gamesDbFile: File) {
                     }
                 }
 
-        private fun handleKastleDirectory(home: String): Either<KastleDirectoryError, File> =
+        private fun handleKastleDirectory(home: String): Either<KastleDirectoryError, Path> =
             Either.catch {
-                val kastleFolder = File("$home/.kastle")
-                if (!kastleFolder.exists() && !kastleFolder.mkdir()) {
+                val kastleFolder = Paths.get("$home/.kastle")
+                if (!Files.exists(kastleFolder)) {
                     return KastleDirectoryError.CreationError.left()
                 } else {
+                    Files.createDirectory(kastleFolder)
                     kastleFolder
                 }
             }.mapLeft {
@@ -101,12 +104,13 @@ class InstallationManager private constructor(private val gamesDbFile: File) {
                 }
             }
 
-        private fun handleGameDbFile(kastleDir: File): Either<DbFileError, File> =
+        private fun handleGameDbFile(kastleDir: Path): Either<DbFileError, Path> =
             Either.catch {
-                val gamesDbFile = File(kastleDir, "games.db")
-                if (!gamesDbFile.exists() && !gamesDbFile.createNewFile()) {
+                val gamesDbFile = kastleDir.resolve("games.db")
+                if (!Files.exists(gamesDbFile)) {
                     return DbFileError.CreationError.left()
                 } else {
+                    Files.createFile(gamesDbFile)
                     gamesDbFile
                 }
             }.mapLeft {
