@@ -63,8 +63,8 @@ class InstallationManager private constructor(private val gamesDbFile: Path) {
         Files.delete(gameFile)
     }
 
-    fun getGameClass(name: String): Either<ConfigError, String> = either {
-        queries.getByGameName(name).executeAsOne().mainClass
+    fun getByGameName(name: String): Either<ConfigError, InstalledGames> = either {
+        queries.getByGameName(name).executeAsOne()
     }
 
     fun getGames(): List<InstalledGames> = queries.getAll().executeAsList()
