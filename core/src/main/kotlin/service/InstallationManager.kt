@@ -53,7 +53,7 @@ class InstallationManager private constructor(private val gamesDbFile: Path) {
         Files.copy(gameFile, gamesFolder)
     }
 
-    fun uninstallGame(name: String) {
+    fun uninstallGame(name: String): Either<ConfigError, Unit> = either {
         val updatedLines = gamesDbFile.readLines().filter { line -> line.split("=")[0] != name }
 
         gamesDbFile.bufferedWriter().use { writer ->
@@ -62,6 +62,13 @@ class InstallationManager private constructor(private val gamesDbFile: Path) {
                 writer.newLine()
             }
         }
+
+        val game = queries.getByGameName(name).executeAsOne()
+        queries.deleteByGameName(name)
+
+        val gameFile = handleGamesFolder().bind()
+            .resolve(game.fileName)
+        Files.delete(gameFile)
     }
 
     fun getGameClass(name: String): Either<ConfigError, String> = either {
