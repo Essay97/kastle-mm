@@ -1,11 +1,22 @@
 package it.saggioland.kastle.cli.commands
 
+import arrow.core.getOrElse
 import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.ProgramResult
+import com.github.ajalt.clikt.parameters.arguments.argument
 import com.varabyte.kotter.foundation.session
 import it.saggioland.kastle.cli.components.choiceSelector
+import it.saggioland.kastle.service.InstallationManager
 
 class Test : CliktCommand() {
+    private val installationManager: InstallationManager = InstallationManager().getOrElse {
+        echo(it.description, err = true)
+        throw ProgramResult(4)
+    }
+
+    private val arg by argument()
     override fun run() {
+        installationManager.getGames()
         val choices = listOf("First choice", "Second choice", "Third choice", "Fourth choice")
         session {
             /*var choice by liveVarOf(0)
