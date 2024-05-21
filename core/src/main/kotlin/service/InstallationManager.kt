@@ -9,6 +9,7 @@ import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
 import it.saggioland.kastle.db.Database
 import it.saggioland.kastle.db.GamesQueries
+import it.saggioland.kastle.db.InstalledGames
 import it.saggioland.kastle.error.*
 import java.io.IOException
 import java.nio.file.Files
@@ -54,15 +55,6 @@ class InstallationManager private constructor(private val gamesDbFile: Path) {
     }
 
     fun uninstallGame(name: String): Either<ConfigError, Unit> = either {
-        val updatedLines = gamesDbFile.readLines().filter { line -> line.split("=")[0] != name }
-
-        gamesDbFile.bufferedWriter().use { writer ->
-            updatedLines.forEach {
-                writer.write(it)
-                writer.newLine()
-            }
-        }
-
         val game = queries.getByGameName(name).executeAsOne()
         queries.deleteByGameName(name)
 
@@ -74,6 +66,8 @@ class InstallationManager private constructor(private val gamesDbFile: Path) {
     fun getGameClass(name: String): Either<ConfigError, String> = either {
         queries.getByGameName(name).executeAsOne().mainClass
     }
+
+    fun getGames(): List<InstalledGames> = queries.getAll().executeAsList()
 
     companion object {
         operator fun invoke(): Either<ConfigError, InstallationManager> = either {
