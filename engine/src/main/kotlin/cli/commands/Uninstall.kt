@@ -16,11 +16,10 @@ class Uninstall : CliktCommand(help = "Uninstall an installed game") {
     }
 
     override fun run() {
-        if (!configManager.allGames.containsKey(gameName)) {
-            echo("error: game $gameName does not exist.", err = true)
-            throw ProgramResult(3)
+        configManager.uninstallGame(gameName).getOrElse {
+            echo(it.description, err = true)
+            throw ProgramResult(6)
         }
-        configManager.uninstallGame(gameName)
         echo("$gameName uninstalled correctly.")
     }
 }

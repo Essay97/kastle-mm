@@ -28,20 +28,6 @@ class InstallationManager private constructor(private val gamesDbFile: Path) {
         queries = Database(driver).gamesQueries
     }
 
-    val allGames: Map<String, Path>
-        get() {
-            val namePathMap = mutableMapOf<String, Path>()
-
-            gamesDbFile.bufferedReader().useLines { lines ->
-                for (line in lines) {
-                    val (key, value) = line.split('=').map { it.trim() }
-                    namePathMap[key] = Paths.get(value)
-                }
-            }
-
-            return namePathMap
-        }
-
     fun installGame(name: String, gameFile: Path, className: String): Either<ConfigError, Unit> = either {
         // Insert game into database
         val gameFileName = gameFile.fileName.name
