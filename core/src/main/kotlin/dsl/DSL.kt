@@ -1,4 +1,4 @@
-package io.github.essay97.dsl
+package io.github.essay97.kastle.dsl
 
 import io.github.essay97.kastle.dto.*
 import kotlinx.datetime.LocalDate
@@ -323,65 +323,3 @@ class WinningConditionsScope {
     )
 }
 
-private fun test() {
-    game("my-room") {
-        preface = "Once upon a time, not so long ago..."
-
-        metadata {
-            author = "Enrico Saggiorato"
-            version = "1.0.0"
-            published = LocalDate(2024, 5, 4)
-            kastleVersions = listOf("1.0")
-        }
-
-        winIf {
-            playerOwns = "i-sword"
-        }
-
-        player {
-            name = "Kyle"
-            description = "Now this is a hero"
-        }
-
-        room("r-room") {
-            name = "Test room"
-            description = "This is a test room"
-            north("r-second-room") {
-                state = LinkState.OPEN
-                behavior = LinkBehavior.COMPLETE
-                triggers("i-item1", "i-item2")
-            }
-
-            item("i-my-item") {
-                name = "Sword"
-                description = "It's a sword"
-                matchers("sword", "blade")
-            }
-
-            character("c-wizard") {
-                name = "Gandalf"
-                description = "One of the great Istari wizards"
-                dialogue {
-                    firstQuestion("q-hello") {
-                        text = "Hello voyager. Do you need me to enchant you?"
-                        answer {
-                            text = "Yes"
-                            nextQuestion = "q-enchant"
-                        }
-                        answer {
-                            text = "No"
-                            nextQuestion = "q-not-enchant"
-                        }
-                    }
-                    question("q-enchant") {
-                        text = "Hocus Pocus!"
-                        reward("i-enchantment") {
-                            name = "Luck enchantment"
-                            description = "Until this is active you are super lucky"
-                        }
-                    }
-                }
-            }
-        }
-    }
-}

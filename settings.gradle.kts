@@ -3,6 +3,5 @@ plugins {
 }
 rootProject.name = "kastle-mm"
 include("core")
-include("dsl")
 include("engine")
 include("example-game")

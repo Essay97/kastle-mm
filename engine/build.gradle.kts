@@ -13,7 +13,6 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     implementation(project(":core"))
-    implementation(project(":dsl"))
     implementation(libs.clikt)
     implementation(libs.kotter)
     implementation(libs.arrow)

@@ -2,7 +2,7 @@ package io.github.essay97.example
 
 import io.github.essay97.kastle.dto.GameConfiguration
 import io.github.essay97.kastle.dto.LinkState
-import io.github.essay97.dsl.game
+import io.github.essay97.kastle.dsl.game
 import io.github.essay97.kastle.model.LinkBehavior
 import io.github.essay97.kastle.service.GameProvider
 
