@@ -9,10 +9,10 @@ import it.saggioland.kastle.error.KastleError
 import it.saggioland.kastle.error.SerializationError
 import it.saggioland.kastle.model.*
 
-fun MetadataDto.toGameMetadata(): GameMetadata =
+internal fun MetadataDto.toGameMetadata(): GameMetadata =
     GameMetadata(author, version, published, kastleVersions)
 
-fun DirectionDto.toLink(): Either<KastleError, Link> = either {
+internal fun DirectionDto.toLink(): Either<KastleError, Link> = either {
     val triggers = mapOrAccumulate(state.triggers ?: emptyList(), KastleError::join) {
         ItemId(it).bind()
     }
@@ -25,7 +25,7 @@ fun DirectionDto.toLink(): Either<KastleError, Link> = either {
 }
 
 
-fun RoomDto.toRoom(): Either<KastleError, Room> = either {
+internal fun RoomDto.toRoom(): Either<KastleError, Room> = either {
     val itemIds = mapOrAccumulate(items ?: emptyList(), KastleError::join) {
         ItemId(it).bind()
     }
@@ -43,7 +43,7 @@ fun RoomDto.toRoom(): Either<KastleError, Room> = either {
 }
 
 
-fun ItemDto.toItem(): Either<KastleError, Item> = either {
+internal fun ItemDto.toItem(): Either<KastleError, Item> = either {
     val id = ItemId(this@toItem.id).bind()
     val description = description ?: "It's not so clear how this looks..."
     val matchers = matchers ?: emptyList()
@@ -66,7 +66,7 @@ fun ItemDto.toItem(): Either<KastleError, Item> = either {
 
 }
 
-fun CharacterDto.toCharacter(): Either<KastleError, Character> = either {
+internal fun CharacterDto.toCharacter(): Either<KastleError, Character> = either {
     Character(
         id = CharacterId(id).bind(),
         name = name,
@@ -76,14 +76,14 @@ fun CharacterDto.toCharacter(): Either<KastleError, Character> = either {
     )
 }
 
-fun DialogueDto.toQuestion(): Either<KastleError, Question> = either {
+internal fun DialogueDto.toQuestion(): Either<KastleError, Question> = either {
     val firstQuestionDto = ensureNotNull(questions.find { it.id == firstQuestion }) {
         SerializationError("firstQuestion references a non existent dialogue ID (${firstQuestion})")
     }
     firstQuestionDto.toQuestion(questions).bind()
 }
 
-fun QuestionDto.toQuestion(questionDtoList: List<QuestionDto>): Either<KastleError, Question> = either {
+internal fun QuestionDto.toQuestion(questionDtoList: List<QuestionDto>): Either<KastleError, Question> = either {
     ensure(!(answers != null && reward != null)) {
         SerializationError("Question should have answers or reward, not both ('${id}')")
     }
@@ -95,7 +95,7 @@ fun QuestionDto.toQuestion(questionDtoList: List<QuestionDto>): Either<KastleErr
     }
 }
 
-fun AnswerDto.toAnswer(questionDtoList: List<QuestionDto>): Either<KastleError, Answer> = either {
+internal fun AnswerDto.toAnswer(questionDtoList: List<QuestionDto>): Either<KastleError, Answer> = either {
     val nextQuestionDto = ensureNotNull(questionDtoList.find { it.id == nextQuestion }) {
         SerializationError("Trying to reference non existent dialogue id ($nextQuestion)")
     }
@@ -103,11 +103,11 @@ fun AnswerDto.toAnswer(questionDtoList: List<QuestionDto>): Either<KastleError, 
     Answer(text, nextDomainQuestion)
 }
 
-fun WinningConditionsDto.toWinningConditions(): Either<KastleError, WinningConditions> = either {
+internal fun WinningConditionsDto.toWinningConditions(): Either<KastleError, WinningConditions> = either {
     val roomId = playerEnters?.let { RoomId(it).bind() }
     val itemId = playerOwns?.let { ItemId(it).bind() }
     WinningConditions(itemId, roomId).bind()
 }
 
-fun PlayerDto.toPlayer(): Player =
+internal fun PlayerDto.toPlayer(): Player =
     Player(name, description ?: "At the end of the day, even you don't know yourself very well...")
