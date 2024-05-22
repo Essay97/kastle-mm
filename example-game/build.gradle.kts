@@ -2,7 +2,7 @@ plugins {
     kotlin("jvm") version "1.9.23"
 }
 
-group = "it.saggioland"
+group = "io.github.essay97"
 version = "unspecified"
 
 repositories {

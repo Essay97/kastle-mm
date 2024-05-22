@@ -4,7 +4,7 @@ plugins {
 }
 
 version = "1.0-SNAPSHOT"
-group = "it.saggioland"
+group = "io.github.essay97"
 
 repositories {
     mavenCentral()
