@@ -1,11 +1,11 @@
-package it.saggioland.kastle.model.commands
+package io.github.essay97.kastle.model.commands
 
 import arrow.core.Either
 import arrow.core.right
-import it.saggioland.kastle.service.MovementManager
-import it.saggioland.kastle.model.nextaction.DescribeCurrentRoom
-import it.saggioland.kastle.model.nextaction.NextAction
-import it.saggioland.kastle.error.KastleError
+import io.github.essay97.kastle.service.MovementManager
+import io.github.essay97.kastle.model.nextaction.DescribeCurrentRoom
+import io.github.essay97.kastle.model.nextaction.NextAction
+import io.github.essay97.kastle.error.KastleError
 
 class WhereCommand(private val movementManager: MovementManager) : GameCommand() {
     override fun execute(): Either<KastleError, NextAction> = DescribeCurrentRoom.right()

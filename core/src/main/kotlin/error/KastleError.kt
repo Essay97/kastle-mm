@@ -1,7 +1,7 @@
-package it.saggioland.kastle.error
+package io.github.essay97.kastle.error
 
-import it.saggioland.kastle.model.CharacterId
-import it.saggioland.kastle.model.ItemId
+import io.github.essay97.kastle.model.CharacterId
+import io.github.essay97.kastle.model.ItemId
 
 sealed class KastleError(open val description: String) {
     abstract fun join(second: KastleError): KastleError

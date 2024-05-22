@@ -1,14 +1,14 @@
-package it.saggioland.kastle.model.commands
+package io.github.essay97.kastle.model.commands
 
 import arrow.core.Either
 import arrow.core.raise.either
-import it.saggioland.kastle.service.GameState
-import it.saggioland.kastle.service.MovementManager
-import it.saggioland.kastle.model.Direction
-import it.saggioland.kastle.model.Rooms
-import it.saggioland.kastle.model.nextaction.ConfirmOpen
-import it.saggioland.kastle.model.nextaction.NextAction
-import it.saggioland.kastle.error.KastleError
+import io.github.essay97.kastle.service.GameState
+import io.github.essay97.kastle.service.MovementManager
+import io.github.essay97.kastle.model.Direction
+import io.github.essay97.kastle.model.Rooms
+import io.github.essay97.kastle.model.nextaction.ConfirmOpen
+import io.github.essay97.kastle.model.nextaction.NextAction
+import io.github.essay97.kastle.error.KastleError
 
 class OpenCommand(private val direction: Direction, private val movementManager: MovementManager, private val state: GameState) : GameCommand() {
     override fun execute(): Either<KastleError, NextAction> = either {

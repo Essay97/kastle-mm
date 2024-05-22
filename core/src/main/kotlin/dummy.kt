@@ -1,1 +1,1 @@
-package it.saggioland.kastle
+package io.github.essay97.kastle

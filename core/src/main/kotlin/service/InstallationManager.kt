@@ -1,4 +1,4 @@
-package it.saggioland.kastle.service
+package io.github.essay97.kastle.service
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
@@ -7,10 +7,10 @@ import arrow.core.getOrElse
 import arrow.core.left
 import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
-import it.saggioland.kastle.db.Database
-import it.saggioland.kastle.db.GamesQueries
-import it.saggioland.kastle.db.InstalledGames
-import it.saggioland.kastle.error.*
+import io.github.essay97.kastle.db.Database
+import io.github.essay97.kastle.db.GamesQueries
+import io.github.essay97.kastle.db.InstalledGames
+import io.github.essay97.kastle.error.*
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path

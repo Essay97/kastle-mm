@@ -1,6 +1,6 @@
-package it.saggioland.kastle.service
+package io.github.essay97.kastle.service
 
-import it.saggioland.kastle.model.WinningConditions
+import io.github.essay97.kastle.model.WinningConditions
 
 class RunManager(
     private val winningConditions: WinningConditions?,

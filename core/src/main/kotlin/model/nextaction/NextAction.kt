@@ -1,9 +1,9 @@
-package it.saggioland.kastle.model.nextaction
+package io.github.essay97.kastle.model.nextaction
 
-import it.saggioland.kastle.model.Dialogue
-import it.saggioland.kastle.model.Room
-import it.saggioland.kastle.model.StorableItem
-import it.saggioland.kastle.model.capabilities.Inspectable
+import io.github.essay97.kastle.model.Dialogue
+import io.github.essay97.kastle.model.Room
+import io.github.essay97.kastle.model.StorableItem
+import io.github.essay97.kastle.model.capabilities.Inspectable
 
 sealed class NextAction
 data object DescribeCurrentRoom : NextAction()

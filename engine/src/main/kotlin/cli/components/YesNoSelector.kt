@@ -1,4 +1,4 @@
-package it.saggioland.kastle.cli.components
+package io.github.essay97.kastle.cli.components
 
 import com.varabyte.kotter.foundation.input.Keys
 import com.varabyte.kotter.foundation.input.onKeyPressed

@@ -1,12 +1,12 @@
-package it.saggioland.kastle.cli.commands
+package io.github.essay97.kastle.cli.commands
 
 import arrow.core.getOrElse
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.core.ProgramResult
 import com.github.ajalt.clikt.parameters.arguments.argument
 import com.varabyte.kotter.foundation.session
-import it.saggioland.kastle.cli.components.choiceSelector
-import it.saggioland.kastle.service.InstallationManager
+import io.github.essay97.kastle.cli.components.choiceSelector
+import io.github.essay97.kastle.service.InstallationManager
 
 class Test : CliktCommand() {
     private val installationManager: InstallationManager = InstallationManager().getOrElse {

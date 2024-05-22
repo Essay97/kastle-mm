@@ -1,12 +1,12 @@
-package it.saggioland.kastle.service
+package io.github.essay97.kastle.service
 
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
-import it.saggioland.kastle.dto.*
-import it.saggioland.kastle.error.KastleError
-import it.saggioland.kastle.error.SerializationError
-import it.saggioland.kastle.model.*
+import io.github.essay97.kastle.dto.*
+import io.github.essay97.kastle.error.KastleError
+import io.github.essay97.kastle.error.SerializationError
+import io.github.essay97.kastle.model.*
 import java.io.File
 import java.net.URLClassLoader
 import java.util.*

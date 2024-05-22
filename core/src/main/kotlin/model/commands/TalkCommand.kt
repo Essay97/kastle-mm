@@ -1,14 +1,14 @@
-package it.saggioland.kastle.model.commands
+package io.github.essay97.kastle.model.commands
 
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensure
-import it.saggioland.kastle.service.InteractableManager
-import it.saggioland.kastle.model.nextaction.ExecuteDialogue
-import it.saggioland.kastle.model.nextaction.NextAction
-import it.saggioland.kastle.error.GameRuntimeError
-import it.saggioland.kastle.error.KastleError
-import it.saggioland.kastle.model.Characters
+import io.github.essay97.kastle.service.InteractableManager
+import io.github.essay97.kastle.model.nextaction.ExecuteDialogue
+import io.github.essay97.kastle.model.nextaction.NextAction
+import io.github.essay97.kastle.error.GameRuntimeError
+import io.github.essay97.kastle.error.KastleError
+import io.github.essay97.kastle.model.Characters
 
 class TalkCommand(private val matcher: String, private val interactableManager: InteractableManager) : GameCommand() {
     override fun execute(): Either<KastleError, NextAction> = either {

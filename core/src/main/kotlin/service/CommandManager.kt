@@ -1,9 +1,9 @@
-package it.saggioland.kastle.service
+package io.github.essay97.kastle.service
 
-import it.saggioland.kastle.model.commands.GameCommand
-import it.saggioland.kastle.model.nextaction.DescribeCurrentRoom
-import it.saggioland.kastle.model.nextaction.NextAction
-import it.saggioland.kastle.error.KastleError
+import io.github.essay97.kastle.model.commands.GameCommand
+import io.github.essay97.kastle.model.nextaction.DescribeCurrentRoom
+import io.github.essay97.kastle.model.nextaction.NextAction
+import io.github.essay97.kastle.error.KastleError
 
 class CommandManager {
     private val _history: MutableList<GameCommand> = mutableListOf()

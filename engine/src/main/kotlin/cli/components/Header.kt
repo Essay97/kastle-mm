@@ -1,4 +1,4 @@
-package it.saggioland.kastle.cli.components
+package io.github.essay97.kastle.cli.components
 
 import com.varabyte.kotter.foundation.render.offscreen
 import com.varabyte.kotter.foundation.text.bold
@@ -9,7 +9,7 @@ import com.varabyte.kotterx.decorations.BorderCharacters
 import com.varabyte.kotterx.decorations.bordered
 import com.varabyte.kotterx.text.Justification
 import com.varabyte.kotterx.text.justified
-import it.saggioland.kastle.model.GameMetadata
+import io.github.essay97.kastle.model.GameMetadata
 
 fun Session.header(metadata: GameMetadata?, gameName: String) = section {
     bordered(

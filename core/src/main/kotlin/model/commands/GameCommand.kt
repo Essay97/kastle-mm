@@ -1,10 +1,10 @@
-package it.saggioland.kastle.model.commands
+package io.github.essay97.kastle.model.commands
 
 import arrow.core.Either
-import it.saggioland.kastle.service.*
-import it.saggioland.kastle.model.Direction
-import it.saggioland.kastle.model.nextaction.NextAction
-import it.saggioland.kastle.error.KastleError
+import io.github.essay97.kastle.service.*
+import io.github.essay97.kastle.model.Direction
+import io.github.essay97.kastle.model.nextaction.NextAction
+import io.github.essay97.kastle.error.KastleError
 
 abstract class GameCommand {
     abstract fun execute(): Either<KastleError, NextAction>

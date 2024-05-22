@@ -1,4 +1,4 @@
-package it.saggioland.kastle.cli.ingamecommands
+package io.github.essay97.kastle.cli.ingamecommands
 
 import com.varabyte.kotter.foundation.input.Completions
 

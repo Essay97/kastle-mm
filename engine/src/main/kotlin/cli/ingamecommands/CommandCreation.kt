@@ -1,4 +1,4 @@
-package it.saggioland.kastle.cli.ingamecommands
+package io.github.essay97.kastle.cli.ingamecommands
 
 import arrow.core.Either
 import arrow.core.left
@@ -6,10 +6,10 @@ import arrow.core.raise.either
 import arrow.core.raise.ensure
 import arrow.core.raise.ensureNotNull
 import arrow.core.right
-import it.saggioland.kastle.model.Direction
-import it.saggioland.kastle.model.commands.CommandFactory
-import it.saggioland.kastle.model.commands.GameCommand
-import it.saggioland.kastle.error.PlayerError
+import io.github.essay97.kastle.model.Direction
+import io.github.essay97.kastle.model.commands.CommandFactory
+import io.github.essay97.kastle.model.commands.GameCommand
+import io.github.essay97.kastle.error.PlayerError
 
 fun getCommand(command: String, argument: String?, factory: CommandFactory):
         Either<PlayerError, GameCommand> =

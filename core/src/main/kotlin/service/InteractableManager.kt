@@ -1,11 +1,11 @@
-package it.saggioland.kastle.service
+package io.github.essay97.kastle.service
 
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
-import it.saggioland.kastle.model.*
-import it.saggioland.kastle.model.capabilities.Inspectable
-import it.saggioland.kastle.error.GameRuntimeError
+import io.github.essay97.kastle.model.*
+import io.github.essay97.kastle.model.capabilities.Inspectable
+import io.github.essay97.kastle.error.GameRuntimeError
 
 class InteractableManager(private val state: GameState) {
     fun getForInspection(matcher: String): Either<GameRuntimeError.CannotFindInspectable, Inspectable> = either {

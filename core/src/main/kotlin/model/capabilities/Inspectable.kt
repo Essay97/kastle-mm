@@ -1,4 +1,4 @@
-package it.saggioland.kastle.model.capabilities
+package io.github.essay97.kastle.model.capabilities
 
 interface Inspectable {
     val description: String

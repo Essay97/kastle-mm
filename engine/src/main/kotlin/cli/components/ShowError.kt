@@ -1,4 +1,4 @@
-package it.saggioland.kastle.cli.components
+package io.github.essay97.kastle.cli.components
 
 import com.varabyte.kotter.foundation.text.red
 import com.varabyte.kotter.foundation.text.textLine

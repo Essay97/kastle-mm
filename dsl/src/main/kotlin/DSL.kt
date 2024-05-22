@@ -1,8 +1,8 @@
-package it.saggioland.dsl
+package io.github.essay97.dsl
 
-import it.saggioland.kastle.dto.*
+import io.github.essay97.kastle.dto.*
 import kotlinx.datetime.LocalDate
-import it.saggioland.kastle.model.LinkBehavior
+import io.github.essay97.kastle.model.LinkBehavior
 
 @DslMarker
 annotation class KastleDsl

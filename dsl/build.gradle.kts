@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin)
+    `java-library`
 }
 
 version = "1.0-SNAPSHOT"
@@ -12,7 +13,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     implementation(libs.kotlinx.datetime)
-    implementation(project(":core"))
+    api(project(":core"))
 }
 
 tasks.test {

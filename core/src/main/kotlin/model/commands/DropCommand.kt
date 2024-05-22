@@ -1,15 +1,15 @@
-package it.saggioland.kastle.model.commands
+package io.github.essay97.kastle.model.commands
 
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
-import it.saggioland.kastle.service.GameState
-import it.saggioland.kastle.service.InventoryManager
-import it.saggioland.kastle.model.Items
-import it.saggioland.kastle.model.nextaction.ConfirmDrop
-import it.saggioland.kastle.model.nextaction.NextAction
-import it.saggioland.kastle.error.GameRuntimeError
-import it.saggioland.kastle.error.KastleError
+import io.github.essay97.kastle.service.GameState
+import io.github.essay97.kastle.service.InventoryManager
+import io.github.essay97.kastle.model.Items
+import io.github.essay97.kastle.model.nextaction.ConfirmDrop
+import io.github.essay97.kastle.model.nextaction.NextAction
+import io.github.essay97.kastle.error.GameRuntimeError
+import io.github.essay97.kastle.error.KastleError
 
 class DropCommand(
     private val matcher: String,

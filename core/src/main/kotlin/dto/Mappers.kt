@@ -1,13 +1,13 @@
-package it.saggioland.kastle.dto
+package io.github.essay97.kastle.dto
 
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensure
 import arrow.core.raise.ensureNotNull
 import arrow.core.raise.mapOrAccumulate
-import it.saggioland.kastle.error.KastleError
-import it.saggioland.kastle.error.SerializationError
-import it.saggioland.kastle.model.*
+import io.github.essay97.kastle.error.KastleError
+import io.github.essay97.kastle.error.SerializationError
+import io.github.essay97.kastle.model.*
 
 internal fun MetadataDto.toGameMetadata(): GameMetadata =
     GameMetadata(author, version, published, kastleVersions)

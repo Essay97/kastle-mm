@@ -1,12 +1,12 @@
-package it.saggioland.kastle.service
+package io.github.essay97.kastle.service
 
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensure
 import arrow.core.raise.ensureNotNull
-import it.saggioland.kastle.model.*
-import it.saggioland.kastle.error.GameDefinitionError
-import it.saggioland.kastle.error.GameRuntimeError
+import io.github.essay97.kastle.model.*
+import io.github.essay97.kastle.error.GameDefinitionError
+import io.github.essay97.kastle.error.GameRuntimeError
 import kotlin.reflect.KProperty1
 
 class MovementManager private constructor(

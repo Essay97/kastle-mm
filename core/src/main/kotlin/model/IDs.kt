@@ -1,9 +1,9 @@
-package it.saggioland.kastle.model
+package io.github.essay97.kastle.model
 
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensure
-import it.saggioland.kastle.error.ValidationError
+import io.github.essay97.kastle.error.ValidationError
 
 
 abstract class Id {

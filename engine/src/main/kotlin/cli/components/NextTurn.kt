@@ -1,4 +1,4 @@
-package it.saggioland.kastle.cli.components
+package io.github.essay97.kastle.cli.components
 
 import arrow.core.Either
 import arrow.core.left
@@ -8,9 +8,9 @@ import com.varabyte.kotter.foundation.input.input
 import com.varabyte.kotter.foundation.input.onInputEntered
 import com.varabyte.kotter.foundation.input.runUntilInputEntered
 import com.varabyte.kotter.runtime.Session
-import it.saggioland.kastle.cli.ingamecommands.gameCommandCompletions
-import it.saggioland.kastle.cli.ingamecommands.gameCommands
-import it.saggioland.kastle.error.PlayerError
+import io.github.essay97.kastle.cli.ingamecommands.gameCommandCompletions
+import io.github.essay97.kastle.cli.ingamecommands.gameCommands
+import io.github.essay97.kastle.error.PlayerError
 
 fun Session.nextTurn(): Either<PlayerError, Pair<String, String?>> {
     var parsedCommand: Either<PlayerError, Pair<String, String?>> = PlayerError("Generic player error").left()

@@ -1,14 +1,14 @@
-package it.saggioland.kastle.service
+package io.github.essay97.kastle.service
 
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensure
 import arrow.core.raise.ensureNotNull
-import it.saggioland.kastle.model.ItemId
-import it.saggioland.kastle.model.Items
-import it.saggioland.kastle.model.Rooms
-import it.saggioland.kastle.error.GameRuntimeError
-import it.saggioland.kastle.error.KastleError
+import io.github.essay97.kastle.model.ItemId
+import io.github.essay97.kastle.model.Items
+import io.github.essay97.kastle.model.Rooms
+import io.github.essay97.kastle.error.GameRuntimeError
+import io.github.essay97.kastle.error.KastleError
 
 class InventoryManager(private val state: GameState) {
 

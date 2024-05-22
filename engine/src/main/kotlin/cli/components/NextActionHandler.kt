@@ -1,16 +1,16 @@
-package it.saggioland.kastle.cli.components
+package io.github.essay97.kastle.cli.components
 
 import com.varabyte.kotter.foundation.text.bold
 import com.varabyte.kotter.foundation.text.text
 import com.varabyte.kotter.foundation.text.textLine
 import com.varabyte.kotter.runtime.Session
-import it.saggioland.kastle.model.Characters
-import it.saggioland.kastle.service.CommandManager
-import it.saggioland.kastle.service.GameState
-import it.saggioland.kastle.service.InformationManager
-import it.saggioland.kastle.model.Items
-import it.saggioland.kastle.model.Rooms
-import it.saggioland.kastle.model.nextaction.*
+import io.github.essay97.kastle.model.Characters
+import io.github.essay97.kastle.service.CommandManager
+import io.github.essay97.kastle.service.GameState
+import io.github.essay97.kastle.service.InformationManager
+import io.github.essay97.kastle.model.Items
+import io.github.essay97.kastle.model.Rooms
+import io.github.essay97.kastle.model.nextaction.*
 
 fun Session.handleNextAction(
     commandManager: CommandManager,

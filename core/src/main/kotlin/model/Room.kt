@@ -1,12 +1,12 @@
-package it.saggioland.kastle.model
+package io.github.essay97.kastle.model
 
 import arrow.core.Either
 import arrow.core.raise.either
 import arrow.core.raise.ensureNotNull
 import arrow.core.raise.mapOrAccumulate
-import it.saggioland.kastle.model.capabilities.Inspectable
-import it.saggioland.kastle.error.GameDefinitionError
-import it.saggioland.kastle.error.KastleError
+import io.github.essay97.kastle.model.capabilities.Inspectable
+import io.github.essay97.kastle.error.GameDefinitionError
+import io.github.essay97.kastle.error.KastleError
 
 class Room private constructor(
     val id: RoomId,

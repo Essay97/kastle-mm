@@ -1,4 +1,4 @@
-package it.saggioland.kastle.cli.commands
+package io.github.essay97.kastle.cli.commands
 
 import com.github.ajalt.clikt.core.NoOpCliktCommand
 import kotlin.collections.List

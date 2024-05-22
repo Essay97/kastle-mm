@@ -1,7 +1,7 @@
-package it.saggioland.kastle
+package io.github.essay97.kastle
 
 import com.github.ajalt.clikt.core.subcommands
-import it.saggioland.kastle.cli.commands.*
+import io.github.essay97.kastle.cli.commands.*
 
 fun main(args: Array<String>) = Kastle()
     .subcommands(List(), Install(),/* Uninstall(), Play(), Info(),*/ Test())

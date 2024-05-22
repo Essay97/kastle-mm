@@ -1,13 +1,13 @@
-package it.saggioland.kastle.model.commands
+package io.github.essay97.kastle.model.commands
 
 import arrow.core.Either
 import arrow.core.raise.either
-import it.saggioland.kastle.service.InteractableManager
-import it.saggioland.kastle.service.InventoryManager
-import it.saggioland.kastle.model.Items
-import it.saggioland.kastle.model.nextaction.ConfirmGrab
-import it.saggioland.kastle.model.nextaction.NextAction
-import it.saggioland.kastle.error.KastleError
+import io.github.essay97.kastle.service.InteractableManager
+import io.github.essay97.kastle.service.InventoryManager
+import io.github.essay97.kastle.model.Items
+import io.github.essay97.kastle.model.nextaction.ConfirmGrab
+import io.github.essay97.kastle.model.nextaction.NextAction
+import io.github.essay97.kastle.error.KastleError
 
 class GrabCommand(
     private val matcher: String,

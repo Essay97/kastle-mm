@@ -1,7 +1,7 @@
-package it.saggioland.kastle.service
+package io.github.essay97.kastle.service
 
-import it.saggioland.kastle.model.ItemId
-import it.saggioland.kastle.model.RoomId
+import io.github.essay97.kastle.model.ItemId
+import io.github.essay97.kastle.model.RoomId
 
 data class GameState(var currentRoom: RoomId) {
     val inventory =  mutableListOf<ItemId>()

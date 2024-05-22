@@ -1,4 +1,4 @@
-package it.saggioland.kastle.dto
+package io.github.essay97.kastle.dto
 
 class GameConfiguration(
     val rooms: List<RoomDto>,

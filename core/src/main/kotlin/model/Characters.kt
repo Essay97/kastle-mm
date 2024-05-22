@@ -1,4 +1,4 @@
-package it.saggioland.kastle.model
+package io.github.essay97.kastle.model
 
 object Characters {
     private val characters = mutableMapOf<CharacterId, Character>()

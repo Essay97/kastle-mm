@@ -1,10 +1,10 @@
-package it.saggioland.example
+package io.github.essay97.example
 
-import it.saggioland.kastle.dto.GameConfiguration
-import it.saggioland.kastle.dto.LinkState
-import it.saggioland.dsl.game
-import it.saggioland.kastle.model.LinkBehavior
-import it.saggioland.kastle.service.GameProvider
+import io.github.essay97.kastle.dto.GameConfiguration
+import io.github.essay97.kastle.dto.LinkState
+import io.github.essay97.dsl.game
+import io.github.essay97.kastle.model.LinkBehavior
+import io.github.essay97.kastle.service.GameProvider
 
 class ExampleGame : GameProvider {
     override fun provideConfiguration(): GameConfiguration = game("r-room-1") {
