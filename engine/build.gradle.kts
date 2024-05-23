@@ -24,5 +24,5 @@ tasks.test {
 }
 
 application {
-    mainClass.set("it.saggioland.kastle.MainKt")
+    mainClass.set("io.github.essay97.kastle.MainKt")
 }

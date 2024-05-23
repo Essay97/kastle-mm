@@ -25,7 +25,7 @@ tasks.test {
 sqldelight {
     databases {
         create("Database") {
-            packageName.set("it.saggioland.kastle.db")
+            packageName.set("io.github.essay97.kastle.db")
         }
     }
 }
