@@ -6,7 +6,7 @@ import io.github.essay97.kastle.model.LinkBehavior
 
 data class MetadataDto(
     val author: String? = null, val version: String? = null, val published: LocalDate? = null, // Format YYYY-MM-DD
-    val kastleVersions: List<String>? = null
+    val kastleVersions: List<String>? = null, val name: String? = null
 )
 
 data class SpecDto(

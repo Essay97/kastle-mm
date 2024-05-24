@@ -73,12 +73,14 @@ class MetadataScope {
     var version: String? = null
     var published: LocalDate? = null
     var kastleVersions: List<String>? = null
+    var name: String? = null
 
     fun build(): MetadataDto = MetadataDto(
         author = author,
         version = version,
         published = published,
-        kastleVersions = kastleVersions
+        kastleVersions = kastleVersions,
+        name = name
     )
 }
 

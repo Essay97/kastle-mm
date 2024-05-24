@@ -10,7 +10,7 @@ import io.github.essay97.kastle.error.SerializationError
 import io.github.essay97.kastle.model.*
 
 internal fun MetadataDto.toGameMetadata(): GameMetadata =
-    GameMetadata(author, version, published, kastleVersions)
+    GameMetadata(author, version, published, kastleVersions, name)
 
 internal fun DirectionDto.toLink(): Either<KastleError, Link> = either {
     val triggers = mapOrAccumulate(state.triggers ?: emptyList(), KastleError::join) {

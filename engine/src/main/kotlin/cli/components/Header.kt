@@ -50,7 +50,8 @@ fun Session.header(metadata: GameMetadata?, gameName: String) = section {
             justification = Justification.CENTER,
             minWidth = maxOf(gameName.length + 16, buffer.lineLengths.maxOrNull() ?: 0)
         ) {
-            bold { text(gameName.uppercase()) }
+            val title = metadata?.gameName ?: gameName
+            bold { text(title.uppercase()) }
         }
 
         val renderer = buffer.createRenderer()
