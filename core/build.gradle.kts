@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin)
     alias(libs.plugins.sqldelight)
+    `java-library`
 }
 
 version = "1.0-SNAPSHOT"
@@ -12,7 +13,7 @@ repositories {
 
 dependencies {
     implementation(libs.arrow)
-    implementation(libs.kotlinx.datetime)
+    api(libs.kotlinx.datetime)
     implementation(libs.sqlite.driver)
 
     testImplementation(kotlin("test"))

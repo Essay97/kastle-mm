@@ -1,15 +1,18 @@
 package io.github.essay97.example
 
-import io.github.essay97.kastle.dto.GameConfiguration
-import io.github.essay97.kastle.dto.LinkState
 import io.github.essay97.kastle.dsl.game
-import io.github.essay97.kastle.model.LinkBehavior
+import io.github.essay97.kastle.dto.GameConfiguration
 import io.github.essay97.kastle.service.GameProvider
+import kotlinx.datetime.LocalDate
 
 class ExampleGame : GameProvider {
     override fun provideConfiguration(): GameConfiguration = game("r-room-1") {
         metadata {
             author = "Enrico Saggiorato"
+            name = "Tutorial Game"
+            version = "1.0.0"
+            kastleVersions = listOf("1.0.0", "1.0.1")
+            published = LocalDate(2024, 5, 24)
         }
 
         player {
