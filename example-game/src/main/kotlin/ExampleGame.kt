@@ -21,6 +21,39 @@ class ExampleGame : GameProvider {
                 behavior = LinkBehavior.CONSTANT
                 state = LinkState.OPEN
             }
+
+            item("i-table") {
+                name = "Table"
+                description = "A nice wooden table"
+                storable = false
+            }
+
+            character("c-doorman") {
+                name = "Jack"
+                description = "Jack is the official Kastle's doorman!"
+                dialogue {
+                    firstQuestion("d-first") {
+                        text = "Hey player! are you ready for the adventure?"
+                        answer {
+                            text = "Yes!"
+                            nextQuestion = "d-ifyes"
+                        }
+                        answer {
+                            text = "No..."
+                            nextQuestion = "d-ifno"
+                        }
+                    }
+
+                    question("d-ifyes") {
+                        text = "Ok, take this and go the the next room!"
+                        reward("i-diploma") {
+                            name = "Diploma"
+                            description = "It's a nice diploma with decorated borders"
+                        }
+                    }
+                }
+            }
+
         }
 
         room("r-winner") {

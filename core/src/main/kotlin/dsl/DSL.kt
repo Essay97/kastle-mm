@@ -215,6 +215,7 @@ class CharacterScope(private val characterId: String) {
 class ItemScope(private val itemId: String) {
     var name = itemId
     var description: String? = null
+    var storable: Boolean = false
     private var matchers: List<String> = listOf()
 
     fun matchers(vararg words: String) {
@@ -225,7 +226,10 @@ class ItemScope(private val itemId: String) {
         name = name,
         id = itemId,
         description = description,
-        matchers = matchers
+        matchers = matchers,
+        /* At the moment the use is a string, even if it's not really needed.
+         This workaround makes the DSL more legible and makes more sense */
+        use = if (storable) "" else null
     )
 }
 
