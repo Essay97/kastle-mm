@@ -105,25 +105,25 @@ class RoomScope(private val roomId: String) {
     private val items: MutableList<ItemDto> = mutableListOf()
     private val characters: MutableList<CharacterDto> = mutableListOf()
 
-    fun north(roomId: String, init: DirectionScope.() -> Unit) {
+    fun north(roomId: String, init: DirectionScope.() -> Unit = {}) {
         val scope = DirectionScope(roomId)
         scope.init()
         north = scope.build()
     }
 
-    fun south(roomId: String, init: DirectionScope.() -> Unit) {
+    fun south(roomId: String, init: DirectionScope.() -> Unit = {}) {
         val scope = DirectionScope(roomId)
         scope.init()
         south = scope.build()
     }
 
-    fun west(roomId: String, init: DirectionScope.() -> Unit) {
+    fun west(roomId: String, init: DirectionScope.() -> Unit = {}) {
         val scope = DirectionScope(roomId)
         scope.init()
         west = scope.build()
     }
 
-    fun east(roomId: String, init: DirectionScope.() -> Unit) {
+    fun east(roomId: String, init: DirectionScope.() -> Unit = {}) {
         val scope = DirectionScope(roomId)
         scope.init()
         east = scope.build()
@@ -236,7 +236,7 @@ class ItemScope(private val itemId: String) {
 @KastleDsl
 class DialogueScope {
     private var questions: MutableList<QuestionDto> = mutableListOf()
-    private var firstQuestionId = "d-question"
+    private var firstQuestionId = "d-default-question"
     // This is needed to store the items that are created as dialogue rewards
     private var items: MutableList<ItemDto> = mutableListOf()
 
@@ -308,7 +308,7 @@ class QuestionScope(private val questionId: String) {
 @KastleDsl
 class AnswerScope {
     var text = "Default answer"
-    var nextQuestion = "d-question"
+    var nextQuestion = "d-default-question"
 
     fun build(): AnswerDto = AnswerDto(
         text = text,
